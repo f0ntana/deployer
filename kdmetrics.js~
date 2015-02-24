@@ -1,0 +1,67 @@
+function generateUUID() {
+    var e = (new Date).getTime();
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (t) {
+        var n = (e + Math.random() * 16) % 16 | 0;
+        e = Math.floor(e / 16);
+        return (t == "x" ? n : n & 7 | 8).toString(16)
+    })
+}
+function getXMLReq() {
+    var e;
+    if (window.XMLHttpRequest) {
+        e = new XMLHttpRequest
+    } else {
+        e = new ActiveXObject("Microsoft.XMLHTTP")
+    }
+    return e
+}
+function setCookie(e, t, n) {
+    var r = new Date;
+    r.setTime(r.getTime() + n * 24 * 60 * 60 * 1e3);
+    var i = "expires=" + r.toUTCString() + "; ";
+    document.cookie = e + "=" + t + "; " + i + "; path=/"
+}
+function getCookie(e) {
+    var t = e + "=";
+    var n = document.cookie.split(";");
+    for (var r = 0; r < n.length; r++) {
+        var i = n[r];
+        while (i.charAt(0) == " ")i = i.substring(1);
+        if (i.indexOf(t) != -1)return i.substring(t.length, i.length)
+    }
+    return ""
+}
+function checkCookie(e) {
+    var t = getCookie(e);
+    return t != ""
+}
+function __as_ping(e) {
+    var t = getXMLReq();
+    var n = JSON.stringify(e);
+    t.open("POST", NETSELL_STAT + "metrics/analytics", true);
+    t.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    t.send("q=" + n)
+}
+function pingRegiao(e) {
+    var t = getXMLReq();
+    t.open("POST", NETSELL_STAT + "metrics/region", true);
+    t.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    t.send("q=" + e)
+}
+var NETSELL_STAT = "//api.lkd.com.br/";
+var cookieName = "lkdanalytcs";
+var uuid = getCookie(cookieName);
+var regiao = getCookie("Regiao");
+if (!checkCookie(cookieName)) {
+    uuid = generateUUID();
+    setCookie(cookieName, uuid, 365)
+}
+var _lkd = [];
+_lkd.push(["_uuid", uuid]);
+_lkd.push(["referrer", document.referrer]);
+_lkd.push(["location", location.href]);
+_lkd.push(["resolution", window.screen.availWidth + "x" + window.screen.availHeight]);
+_lkd.push(["browser", navigator.appCodeName + " " + navigator.appVersion]);
+_lkd.push(["regiao", regiao]);
+__as_ping(_lkd);
+pingRegiao(regiao)
