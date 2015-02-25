@@ -18,6 +18,7 @@ class AnnotationsServiceProvider extends ServiceProvider
      * @var array
      */
     protected $scanRoutes = [
+        'App\Http\Controllers\Auth\AuthController',
         'App\Http\Controllers\HomeController',
     ];
 
@@ -26,6 +27,6 @@ class AnnotationsServiceProvider extends ServiceProvider
      *
      * @var bool
      */
-    protected $scanWhenLocal = false;
+    protected $scanWhenLocal = true;
 
 }
