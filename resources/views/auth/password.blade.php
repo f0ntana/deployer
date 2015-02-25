@@ -1,50 +1,36 @@
-@extends('app')
+@extends('layouts.guest')
 
 @section('content')
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-default">
-				<div class="panel-heading">Reset Password</div>
-				<div class="panel-body">
-					@if (session('status'))
-						<div class="alert alert-success">
-							{{ session('status') }}
-						</div>
-					@endif
+    <h3 class="text-center">Bem-vindo! Faça seu login abaixo</h3>
 
-					@if (count($errors) > 0)
-						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
-							<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
-						</div>
-					@endif
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
 
-					<form class="form-horizontal" role="form" method="POST" action="/password/email">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-						<div class="form-group">
-							<label class="col-md-4 control-label">E-Mail Address</label>
-							<div class="col-md-6">
-								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
-							</div>
-						</div>
+    {!! Form::open() !!}
+    {!! Form::openGroup('email', 'Email') !!}
+    {!! Form::email('email', null, ['placeholder' => 'email@exemplo.com.br']) !!}
+    {!! Form::closeGroup() !!}
 
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">
-									Send Password Reset Link
-								</button>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+    {!! Form::openFormActions() !!}
+    {!! Form::submit('Enviar Link', ['class' => 'btn btn-primary btn-lg btn-block form-action']) !!}
+    {!! Form::closeFormActions() !!}
+    {!! Form::close() !!}
+
+    <div class="login-actions">
+        <a href="/auth/login" class="btn btn-sm btn-block btn-default"><i class="fa fa-arrow-left"></i> Voltar</a>
+    </div>
 @endsection

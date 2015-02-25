@@ -26,7 +26,6 @@
     {!! Form::close() !!}
 
     <div class="login-actions">
-        <a href="{!! URL::to('remind')  !!}" class="btn btn-sm btn-block btn-default"><i class="fa fa-refresh"></i> Esqueçi minha senha</a>
-        <a href="{!! URL::to('register')  !!}" class="btn btn-sm btn-block btn-default"><i class="fa fa-user"></i> Criar conta</a>
+        <a href="/password/email" class="btn btn-sm btn-block btn-default"><i class="fa fa-refresh"></i> Esqueçi minha senha</a>
     </div>
 @endsection
