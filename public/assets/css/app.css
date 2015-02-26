@@ -6842,13 +6842,41 @@ aside.navigation .loggeduser figure figcaption {
 }
 aside.navigation .loggeduser .actions {
   background-color: #d8ac0e;
-    text-align: right;
-    padding: 10px;
+  text-align: right;
+  padding: 10px;
 }
-
 aside.navigation .loggeduser .actions a {
-    color: #09395f;
-    line-height: 20px;
+  color: #09395f;
+  line-height: 20px;
+}
+@media (min-width: 768px) {
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 0;
+    max-height: none;
+  }
+  .sidebar-nav .navbar ul {
+    float: none;
+  }
+  .sidebar-nav .navbar ul:not {
+    display: block;
+  }
+  .sidebar-nav .navbar li {
+    border-bottom: 1px solid #5e5e5e;
+    display: block;
+    float: none;
+  }
+  .sidebar-nav .navbar li.active {
+    background-color: #111111;
+  }
+  .sidebar-nav .navbar li a {
+    padding-bottom: 15px;
+    color: #dddddd;
+    padding-top: 15px;
+  }
+  .sidebar-nav .navbar li a:hover,
+  .sidebar-nav .navbar li a:focus {
+    background-color: #2b2b2b;
+  }
 }
 main.main {
   margin-left: 20%;
