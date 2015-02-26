@@ -6812,7 +6812,8 @@ a.list-group-item-danger.active:focus {
 .guest .box .form-actions {
   margin-bottom: 20px;
 }
-section.navigation {
+
+aside.navigation {
   width: 20%;
   background: #474546;
   position: fixed;
@@ -6822,14 +6823,26 @@ section.navigation {
   left: 0;
   top: 0;
 }
-section.navigation .loggeduser {
+
+aside.navigation .loggeduser {
   background-color: #f1c528;
   color: #09395f;
+    padding-top: 10px;
 }
-section.navigation .loggeduser .actions {
+
+aside.navigation .loggeduser .name {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    vertical-align: middle;
+    line-height: 73px;
+}
+
+aside.navigation .loggeduser .actions {
   background-color: #d8ac0e;
+    margin-top: 10px;
 }
-section.main {
+
+main.main {
   margin-left: 20%;
 }
 body {

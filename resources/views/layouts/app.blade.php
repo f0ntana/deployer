@@ -1,12 +1,12 @@
 @extends('layouts.empty')
 
 @section('page')
-    <section class="navigation">
+    <aside class="navigation">
         @include('layouts.partials.loggeduser')
         @include('layouts.partials.navigation')
-    </section>
+    </aside>
 
-    <section class="main">
+    <main class="main">
         @yield('content')
-    </section>
+    </main>
 @stop

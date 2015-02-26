@@ -1,4 +1,4 @@
-section.navigation {
+aside.navigation {
   width: @navbar-width;
   background: #474546;
   position: fixed;
@@ -11,9 +11,18 @@ section.navigation {
   .loggeduser {
     background-color: @primary-color;
     color: @secondary-color;
+    padding-top: 10px;
+
+    .name {
+      font-family: 'Oswald', sans-serif;
+      text-transform: uppercase;
+      vertical-align: middle;
+      line-height: 73px;
+    }
 
     .actions {
       background-color: darken(@primary-color, 10%);
+      margin-top: 10px;
     }
   }
 }
