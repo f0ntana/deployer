@@ -1,0 +1,19 @@
+section.navigation {
+  width: @navbar-width;
+  background: #474546;
+  position: fixed;
+  height: 100%;
+  padding: 0 0;
+  margin: 0;
+  left: 0;
+  top: 0;
+
+  .loggeduser {
+    background-color: @primary-color;
+    color: @secondary-color;
+
+    .actions {
+      background-color: darken(@primary-color, 10%);
+    }
+  }
+}
