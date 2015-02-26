@@ -11,18 +11,26 @@ aside.navigation {
   .loggeduser {
     background-color: @primary-color;
     color: @secondary-color;
-    padding-top: 10px;
 
-    .name {
-      font-family: 'Oswald', sans-serif;
-      text-transform: uppercase;
-      vertical-align: middle;
-      line-height: 73px;
+    figure {
+      padding: 15px;
+
+      img {
+        display: inline-block;
+      }
+
+      figcaption {
+        font-family: 'Oswald', sans-serif;
+        text-transform: uppercase;
+        vertical-align: middle;
+        display: inline-block;
+        padding-left: 10px;
+        line-height: 73px;
+      }
     }
 
     .actions {
       background-color: darken(@primary-color, 10%);
-      margin-top: 10px;
     }
   }
 }
