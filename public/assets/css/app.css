@@ -6842,6 +6842,13 @@ aside.navigation .loggeduser figure figcaption {
 }
 aside.navigation .loggeduser .actions {
   background-color: #d8ac0e;
+    text-align: right;
+    padding: 10px;
+}
+
+aside.navigation .loggeduser .actions a {
+    color: #09395f;
+    line-height: 20px;
 }
 main.main {
   margin-left: 20%;

@@ -5,6 +5,7 @@
     </figure>
 
     <div class="actions">
-        actions
+        <a href="" class="btn btn-xs"><i class="fa fa-user"></i> Meus Dados</a>
+        <a href="" class="btn btn-xs"><i class="fa fa-sign-out"></i> Sair</a>
     </div>
 </div>
