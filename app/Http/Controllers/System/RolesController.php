@@ -52,7 +52,7 @@ class RolesController extends Controller
                     'class' => 'panel-default',
                     'body' => view('pages.system.roles.index'),
                 ])
-            ]
+            ],
         ]);
     }
 
