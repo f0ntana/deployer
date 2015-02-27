@@ -30,11 +30,19 @@
 
     </section>
 
-    @if (is_array($contents))
-        @foreach($contents as $content)
-            {!! $content !!}
-        @endforeach
-    @else
-        {!! $contents !!}
-    @endif
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    @if (is_array($contents))
+                        @foreach($contents as $content)
+                            {!! $content !!}
+                        @endforeach
+                    @else
+                        {!! $contents !!}
+                    @endif
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection

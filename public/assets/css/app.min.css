@@ -7150,7 +7150,7 @@ main.main {
 }
 
 header, section.sub-header {
-    border-bottom: 1px solid #b1c2c6;
+    border-bottom: 1px solid #cfd9db;
     background: #fff;
     padding: 10px 0
 }
@@ -7161,6 +7161,11 @@ section.sub-header h1 {
     margin: 0
 }
 
+section.content {
+    padding: 20px
+}
+
 body {
+    background-image: url(/assets/img/crossword.png);
     background-color: #ECF0F1
 }
