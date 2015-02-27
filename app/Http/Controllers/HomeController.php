@@ -1,15 +1,14 @@
 <?php namespace App\Http\Controllers;
 
+/**
+ * @Middleware("auth")
+ */
 class HomeController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    protected $title = 'Dashboard';
 
     /**
-     * @Get("/")
+     * @Get("/", as="dashboard")
      */
     public function index()
     {

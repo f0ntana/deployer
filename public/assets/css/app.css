@@ -6866,7 +6866,7 @@ aside.navigation .loggeduser .actions a {
     float: none;
   }
   .sidebar-nav .navbar li.active {
-    background-color: #111111;
+      background-color: #2b2b2b;
   }
   .sidebar-nav .navbar li a {
     padding-bottom: 15px;
@@ -6880,6 +6880,19 @@ aside.navigation .loggeduser .actions a {
 }
 main.main {
   margin-left: 20%;
+}
+
+section.sub-header,
+header {
+    border-bottom: 1px solid #b1c2c6;
+    background: #ffffff;
+    padding: 10px 0;
+}
+
+section.sub-header h1 {
+    font-family: 'Titillium Web', sans-serif;
+    padding: 0;
+    margin: 0;
 }
 body {
   background-color: #ECF0F1;
