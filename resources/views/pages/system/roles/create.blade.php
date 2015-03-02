@@ -1,26 +1,9 @@
-<table class="table table-bordered default-list">
-    <thead>
-    <tr>
-        <th>Nome</th>
-        <th width="1%">&nbsp;</th>
-    </tr>
-    </thead>
-    <tbody>
-    @if ($records->count())
-        @foreach($records as $record)
-            <tr>
-                <td>Root</td>
-                <td class="td-actions" nowrap>
-                    {!! Form::model($record, ['method' => 'get', 'route' => ['system.roles.destroy', $record->id]]) !!}
-                    {!! Form::button('edit', ['type' => 'submit', 'class' => 'btn btn-default btn-xs']) !!}
-                    {!! Form::close() !!}
+{!! Form::open() !!}
+{!! Form::openGroup('name', 'Nome') !!}
+{!! Form::email('name', null, ['placeholder' => 'Atendimento']) !!}
+{!! Form::closeGroup() !!}
 
-                    {!! Form::model($record, ['method' => 'delete', 'class' => 'delete-record', 'route' => ['system.roles.destroy', $record->id]]) !!}
-                    {!! Form::button('delete', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs']) !!}
-                    {!! Form::close() !!}
-                </td>
-            </tr>
-        @endforeach
-    @endif
-    </tbody>
-</table>
+{!! Form::openFormActions() !!}
+{!! Form::submit('Adicionar', ['class' => 'btn btn-primary form-action']) !!}
+{!! Form::closeFormActions() !!}
+{!! Form::close() !!}
