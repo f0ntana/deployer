@@ -54,7 +54,7 @@ class RolesController extends Controller
                 view('bs.panel', [
                     'title' => 'Lista de Perfis',
                     'class' => 'panel-default',
-                    'body' => view('pages.system.roles.index', [
+                    'nobody' => view('pages.system.roles.index', [
                         'records' => $List
                     ]),
                 ])

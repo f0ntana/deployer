@@ -9,7 +9,7 @@
     @if ($records->count())
         @foreach($records as $record)
             <tr>
-                <td>Root</td>
+                <td>{{ $record->name }}</td>
                 <td class="td-actions" nowrap>
                     {!! Form::model($record, ['method' => 'get', 'route' => ['system.roles.destroy', $record->id]]) !!}
                     {!! Form::button('edit', ['type' => 'submit', 'class' => 'btn btn-default btn-xs']) !!}
@@ -21,6 +21,10 @@
                 </td>
             </tr>
         @endforeach
+    @else
+        <tr>
+            <td colspan="10">Nenhum registro encontrado.</td>
+        </tr>
     @endif
     </tbody>
 </table>

@@ -1,4 +1,4 @@
-{!! Form::open() !!}
+{!! Form::open(['method' => 'post', 'route' => ['system.roles.store']]) !!}
 {!! Form::openGroup('name', 'Nome') !!}
 {!! Form::text('name', null, ['placeholder' => 'Atendimento']) !!}
 {!! Form::closeGroup() !!}
