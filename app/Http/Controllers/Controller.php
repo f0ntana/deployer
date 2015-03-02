@@ -34,6 +34,13 @@ abstract class Controller extends BaseController
     protected $route;
 
     /**
+     * Default number of records per page
+     *
+     * @var int
+     */
+    protected $recordsPerPage = 10;
+
+    /**
      * New instance of Controller
      */
     public function __construct()

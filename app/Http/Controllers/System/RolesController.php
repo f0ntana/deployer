@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use App\Models\User;
+use App\Http\Requests\System\Roles\RoleRequest;
+use App\Models\Role;
 
 /**
  * @Resource("system/roles")
@@ -46,7 +47,7 @@ class RolesController extends Controller
      */
     public function index()
     {
-        $List = User::all();
+        $List = Role::paginate($this->recordsPerPage);
 
         return view('layouts.page', [
             'contents' => [
@@ -82,11 +83,25 @@ class RolesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param RoleRequest $request
      * @return Response
      */
-    public function store()
+    public function store(RoleRequest $request)
     {
-        //
+        $Role = new Role();
+        $Role->name = $request->get('name');
+
+        if ($request->get('role_id')) {
+            $Role->role_id = $request->get('role_id');
+        }
+
+        if ($Role->save()) {
+            return $this->toRoute('system.roles.index', "Registro criado com sucesso", 'success');
+        } else {
+            return redirect()->back()
+                ->withInput($request->all())
+                ->withErrors(["Não foi possível criar o registro."]);
+        }
     }
 
     /**
