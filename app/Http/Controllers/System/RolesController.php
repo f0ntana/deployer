@@ -5,6 +5,7 @@ use App\Http\Requests;
 use App\Http\Requests\System\Roles\RoleRequest;
 use App\Models\Role;
 use App\Services\Db\RoleService;
+use App\Services\Db\service;
 
 /**
  * @Resource("system/roles")
@@ -40,21 +41,22 @@ class RolesController extends Controller
             ]
         ]
     ];
+
     /**
      * @var
      */
-    private $roleService;
+    private $service;
 
     /**
      * Constructor class
      *
-     * @param RoleService $roleService
+     * @param RoleService $service
      */
-    public function __construct(RoleService $roleService)
+    public function __construct(RoleService $service)
     {
         parent::__construct();
 
-        $this->roleService = $roleService;
+        $this->service = $service;
     }
 
     /**
@@ -105,7 +107,12 @@ class RolesController extends Controller
      */
     public function store(RoleRequest $request)
     {
-        if ($this->roleService->save($request->all())) {
+        $Role = $this->service->create([
+            'role_id' => $request->get('role_id', null),
+            'name' => $request->get('name')
+        ]);
+
+        if ($Role) {
             return $this->toRoute('system.roles.index', "Registro criado com sucesso", 'success');
         } else {
             return redirect()->back()
@@ -157,7 +164,12 @@ class RolesController extends Controller
      */
     public function update($id, RoleRequest $request)
     {
-        if ($this->roleService->save($request->all(), $id)) {
+        $Role = $this->service->update([
+            'role_id' => $request->get('role_id', null),
+            'name' => $request->get('name')
+        ], $id);
+
+        if ($Role) {
             return $this->toRoute('system.roles.index', "Registro alterado com sucesso", 'success');
         } else {
             return redirect()->back()
@@ -174,7 +186,7 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        if ($this->roleService->remove($id)) {
+        if ($this->service->remove($id)) {
             return $this->toRoute('system.roles.index', "Registro removido com sucesso", 'success');
         } else {
             return $this->toRoute('system.roles.index', "Não foi possível remover o registro.", 'error');
