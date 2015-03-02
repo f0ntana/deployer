@@ -62,8 +62,10 @@ abstract class Controller extends BaseController
      */
     private function getRouteActions()
     {
-        if (count($this->actions[$this->route])) {
-            return $this->actions[$this->route];
+        if (array_key_exists($this->route, $this->actions)) {
+            if (count($this->actions[$this->route])) {
+                return $this->actions[$this->route];
+            }
         }
 
         return false;

@@ -47,7 +47,7 @@ class RolesController extends Controller
     {
         return view('layouts.page', [
             'contents' => [
-                view('bootstrap.panel', [
+                view('bs.panel', [
                     'title' => 'Lista de Perfis',
                     'class' => 'panel-default',
                     'body' => view('pages.system.roles.index'),

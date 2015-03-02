@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-right">
-                    @if (count($page['actions']))
+                    @if (is_array($page['actions']) && count($page['actions']))
                         @foreach($page['actions'] as $action)
                             <a href="{{ URL::route($action['route']) }}" class="btn {{ $action['btn'] }}"><i class="fa {{ $action['icon'] }}"></i> &nbsp; {{ $action['label'] }}</a>
                         @endforeach

@@ -10,9 +10,7 @@
         </div>
         <div class="navbar-collapse collapse sidebar-navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Menu Item 1</a></li>
-                <li><a href="#">Menu Item 2</a></li>
-                <li><a href="#">Menu Item 4</a></li>
+                <li><a href="{{ URL::route('system.roles.index') }}">Perfis</a></li>
             </ul>
         </div>
     </div>
