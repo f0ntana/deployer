@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Redirect;
 use Route;
 use View;
 
@@ -69,6 +70,15 @@ abstract class Controller extends BaseController
         }
 
         return false;
+    }
+
+    public function toRoute($route, $message = false, $class = 'info')
+    {
+        if ($message) {
+            return Redirect::route($route)->with('message', $message)->with('message-class', $class);
+        } else {
+            return Redirect::route($route);
+        }
     }
 
 }

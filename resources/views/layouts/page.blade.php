@@ -32,6 +32,12 @@
 
     <section class="content">
         <div class="container-fluid">
+            @if (Session::has('message'))
+                <div class="alert alert-{!! Session::get('message-class') !!}">
+                    <p>{{ Session::get('message') }}</p>
+                </div>
+            @endif
+
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     @if (isset($contents))

@@ -68,7 +68,15 @@ class RolesController extends Controller
      */
     public function create()
     {
-        return view('layouts.page');
+        return view('layouts.page', [
+            'contents' => [
+                view('bs.panel', [
+                    'title' => 'Criar Perfil',
+                    'class' => 'panel-default',
+                    'body' => view('pages.system.roles.create'),
+                ])
+            ],
+        ]);
     }
 
     /**
@@ -122,7 +130,7 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->toRoute('system.roles.index', "Registro removido com sucesso", 'success');
     }
 
 }
