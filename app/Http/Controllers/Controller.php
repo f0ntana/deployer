@@ -38,7 +38,7 @@ abstract class Controller extends BaseController
      *
      * @var int
      */
-    protected $recordsPerPage = 10;
+    protected $recordsPerPage = 1;
 
     /**
      * New instance of Controller

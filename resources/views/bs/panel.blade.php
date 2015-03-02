@@ -5,9 +5,9 @@
     @endif
 
         @if (isset($body))
-    <div class="panel-body">
-        {!! $body !!}
-    </div>
+            <div class="panel-body">
+                {!! $body !!}
+            </div>
         @endif
 
         @if (isset($nobody))

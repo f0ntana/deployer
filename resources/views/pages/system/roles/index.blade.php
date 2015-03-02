@@ -28,3 +28,8 @@
     @endif
     </tbody>
 </table>
+
+<div class="paginate text-center">
+    {!! $records->render() !!}
+</div>
+
