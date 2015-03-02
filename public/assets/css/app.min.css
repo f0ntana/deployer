@@ -7165,6 +7165,10 @@ section.content {
     padding: 20px
 }
 
+.default-list .td-actions form {
+    display: inline-block
+}
+
 body {
     background-image: url(/assets/img/crossword.png);
     background-color: #ECF0F1

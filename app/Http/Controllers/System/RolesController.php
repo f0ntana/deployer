@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Models\User;
 
 /**
  * @Resource("system/roles")
@@ -45,12 +46,16 @@ class RolesController extends Controller
      */
     public function index()
     {
+        $List = User::all();
+
         return view('layouts.page', [
             'contents' => [
                 view('bs.panel', [
                     'title' => 'Lista de Perfis',
                     'class' => 'panel-default',
-                    'body' => view('pages.system.roles.index'),
+                    'body' => view('pages.system.roles.index', [
+                        'records' => $List
+                    ]),
                 ])
             ],
         ]);

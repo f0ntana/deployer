@@ -6892,9 +6892,12 @@ section.sub-header h1 {
     padding: 0;
     margin: 0;
 }
-
 section.content {
     padding: 20px;
+}
+
+.default-list .td-actions form {
+    display: inline-block;
 }
 body {
     background-image: url('/assets/img/crossword.png');

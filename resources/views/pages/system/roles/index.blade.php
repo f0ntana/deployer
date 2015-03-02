@@ -1,4 +1,4 @@
-<table class="table table-bordered">
+<table class="table table-bordered default-list">
     <thead>
     <tr>
         <th>Nome</th>
@@ -6,12 +6,21 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>Root</td>
-        <td nowrap>
-            <a href="{{ URL::route('system.roles.edit', 1) }}" class="btn btn-default btn-xs"><i class="fa fa-edit"></i></a>
-            <a href="{{ URL::route('system.roles.destroy', 1) }}" class="btn btn-danger btn-xs delete-record"><i class="fa fa-trash"></i></a>
-        </td>
-    </tr>
+    @if ($records->count())
+        @foreach($records as $record)
+            <tr>
+                <td>Root</td>
+                <td class="td-actions" nowrap>
+                    {!! Form::model($record, ['method' => 'get', 'route' => ['system.roles.destroy', $record->id]]) !!}
+                    {!! Form::button('edit', ['type' => 'submit', 'class' => 'btn btn-default btn-xs']) !!}
+                    {!! Form::close() !!}
+
+                    {!! Form::model($record, ['method' => 'delete', 'class' => 'delete-record', 'route' => ['system.roles.destroy', $record->id]]) !!}
+                    {!! Form::button('delete', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs']) !!}
+                    {!! Form::close() !!}
+                </td>
+            </tr>
+        @endforeach
+    @endif
     </tbody>
 </table>
