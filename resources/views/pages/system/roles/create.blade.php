@@ -1,6 +1,10 @@
 {!! Form::open() !!}
 {!! Form::openGroup('name', 'Nome') !!}
-{!! Form::email('name', null, ['placeholder' => 'Atendimento']) !!}
+{!! Form::text('name', null, ['placeholder' => 'Atendimento']) !!}
+{!! Form::closeGroup() !!}
+
+{!! Form::openGroup('role_id', 'Pai') !!}
+{!! Form::select('role_id', [], null, ['placeholder' => 'Atendimento']) !!}
 {!! Form::closeGroup() !!}
 
 {!! Form::openFormActions() !!}
