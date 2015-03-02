@@ -174,7 +174,11 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        return $this->toRoute('system.roles.index', "Registro removido com sucesso", 'success');
+        if ($this->roleService->remove($id)) {
+            return $this->toRoute('system.roles.index', "Registro removido com sucesso", 'success');
+        } else {
+            return $this->toRoute('system.roles.index', "Não foi possível remover o registro.", 'error');
+        }
     }
 
 }

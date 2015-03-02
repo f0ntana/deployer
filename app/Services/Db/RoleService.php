@@ -43,4 +43,15 @@ class RoleService
         return $Role->save();
     }
 
+    public function remove($id)
+    {
+        $Role = Role::find($id);
+
+        if ($Role->delete()) {
+            return true;
+        }
+
+        return false;
+    }
+
 }
