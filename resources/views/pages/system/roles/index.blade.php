@@ -11,7 +11,7 @@
             <tr>
                 <td>{{ $record->name }}</td>
                 <td class="td-actions" nowrap>
-                    {!! Form::model($record, ['method' => 'get', 'route' => ['system.roles.destroy', $record->id]]) !!}
+                    {!! Form::model($record, ['method' => 'get', 'route' => ['system.roles.edit', $record->id]]) !!}
                     {!! Form::button('edit', ['type' => 'submit', 'class' => 'btn btn-default btn-xs']) !!}
                     {!! Form::close() !!}
 

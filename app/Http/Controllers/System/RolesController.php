@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Http\Requests\System\Roles\RoleRequest;
 use App\Models\Role;
+use App\Services\Db\RoleService;
 
 /**
  * @Resource("system/roles")
@@ -39,6 +40,22 @@ class RolesController extends Controller
             ]
         ]
     ];
+    /**
+     * @var
+     */
+    private $roleService;
+
+    /**
+     * Constructor class
+     *
+     * @param RoleService $roleService
+     */
+    public function __construct(RoleService $roleService)
+    {
+        parent::__construct();
+
+        $this->roleService = $roleService;
+    }
 
     /**
      * Display a listing of the resource.
@@ -88,14 +105,7 @@ class RolesController extends Controller
      */
     public function store(RoleRequest $request)
     {
-        $Role = new Role();
-        $Role->name = $request->get('name');
-
-        if ($request->get('role_id')) {
-            $Role->role_id = $request->get('role_id');
-        }
-
-        if ($Role->save()) {
+        if ($this->roleService->save($request->all())) {
             return $this->toRoute('system.roles.index', "Registro criado com sucesso", 'success');
         } else {
             return redirect()->back()
@@ -123,18 +133,37 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Role = Role::find($id);
+
+        return view('layouts.page', [
+            'contents' => [
+                view('bs.panel', [
+                    'title' => "Alteração de Perfil: {$Role->name}",
+                    'class' => 'panel-default',
+                    'body' => view('pages.system.roles.edit', [
+                        'record' => $Role
+                    ]),
+                ])
+            ],
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  int $id
+     * @param RoleRequest $request
      * @return Response
      */
-    public function update($id)
+    public function update($id, RoleRequest $request)
     {
-        //
+        if ($this->roleService->save($request->all(), $id)) {
+            return $this->toRoute('system.roles.index', "Registro alterado com sucesso", 'success');
+        } else {
+            return redirect()->back()
+                ->withInput($request->all())
+                ->withErrors(["Não foi possível criar o registro."]);
+        }
     }
 
     /**
