@@ -1,12 +1,12 @@
-{!! Form::model($record, ['method' => 'put', 'route' => ['system.roles.update', $record->id]]) !!}
+{!! Form::model($record, ['method' => 'put', 'route' => ['system.actions.update', $record->id]]) !!}
 <div class="row">
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         {!! Form::openGroup('name', 'Nome') !!}
         {!! Form::text('name', null, ['placeholder' => 'Servidores']) !!}
         {!! Form::closeGroup() !!}
 
-        {!! Form::openGroup('role_id', 'Pai') !!}
-        {!! Form::select('role_id', $actions, null, ['placeholder' => 'Atendimento']) !!}
+        {!! Form::openGroup('action_id', 'Pai') !!}
+        {!! Form::select('action_id', $actions, null, ['placeholder' => 'Atendimento']) !!}
         {!! Form::closeGroup() !!}
 
         {!! Form::openGroup('order', 'Ordem') !!}
