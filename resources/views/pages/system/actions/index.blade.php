@@ -15,7 +15,7 @@
                     {!! Form::button('editar', ['type' => 'submit', 'class' => 'btn btn-default btn-xs']) !!}
                     {!! Form::close() !!}
 
-                    {!! Form::open(['method' => 'delete', 'class' => 'delete-record', 'route' => ['system.roles.destroy', $id]]) !!}
+                    {!! Form::open(['method' => 'delete', 'class' => 'delete-record', 'route' => ['system.actions.destroy', $id]]) !!}
                     {!! Form::button('remover', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs']) !!}
                     {!! Form::close() !!}
                 </td>
