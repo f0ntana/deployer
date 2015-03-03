@@ -7149,7 +7149,8 @@ aside.navigation .loggeduser .actions a {
     }
 
     .sidebar-nav .nav-list li a {
-        border-bottom: 1px solid #1e1e1e
+        border-bottom: 1px solid #1e1e1e;
+        padding-left: 10px
     }
 
     .sidebar-nav .navbar ul {

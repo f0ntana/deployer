@@ -4,7 +4,7 @@
 {!! Form::closeGroup() !!}
 
 {!! Form::openGroup('role_id', 'Pai') !!}
-{!! Form::select('role_id', [], null, ['placeholder' => 'Atendimento']) !!}
+{!! Form::select('role_id', $roles, null, ['placeholder' => 'Atendimento']) !!}
 {!! Form::closeGroup() !!}
 
 {!! Form::openFormActions() !!}

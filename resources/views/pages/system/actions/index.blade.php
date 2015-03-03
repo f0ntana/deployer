@@ -2,20 +2,20 @@
     <thead>
     <tr>
         <th>Nome</th>
-        <th width="1%">&nbsp;</th>
+        <th width="1%">Ações</th>
     </tr>
     </thead>
     <tbody>
-    @if ($records->count())
-        @foreach($records as $record)
+    @if (count($records))
+        @foreach($records as $id => $name)
             <tr>
-                <td>{{ $record->name }}</td>
+                <td>{{ $name }}</td>
                 <td class="td-actions" nowrap>
-                    {!! Form::model($record, ['method' => 'get', 'route' => ['system.roles.edit', $record->id]]) !!}
+                    {!! Form::open(['method' => 'get', 'route' => ['system.actions.edit', $id]]) !!}
                     {!! Form::button('editar', ['type' => 'submit', 'class' => 'btn btn-default btn-xs']) !!}
                     {!! Form::close() !!}
 
-                    {!! Form::model($record, ['method' => 'delete', 'class' => 'delete-record', 'route' => ['system.roles.destroy', $record->id]]) !!}
+                    {!! Form::open(['method' => 'delete', 'class' => 'delete-record', 'route' => ['system.roles.destroy', $id]]) !!}
                     {!! Form::button('remover', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs']) !!}
                     {!! Form::close() !!}
                 </td>
@@ -28,8 +28,3 @@
     @endif
     </tbody>
 </table>
-
-<div class="paginate text-center">
-    {!! $records->render() !!}
-</div>
-

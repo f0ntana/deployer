@@ -6,7 +6,7 @@
         {!! Form::closeGroup() !!}
 
         {!! Form::openGroup('role_id', 'Pai') !!}
-        {!! Form::select('role_id', [], null, ['placeholder' => 'Atendimento']) !!}
+        {!! Form::select('role_id', $actions, null, ['placeholder' => 'Atendimento']) !!}
         {!! Form::closeGroup() !!}
 
         {!! Form::openGroup('order', 'Ordem') !!}
@@ -28,7 +28,7 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         {!! Form::openFormActions() !!}
-        {!! Form::submit('Adicionar', ['class' => 'btn btn-primary form-action']) !!}
+        {!! Form::submit('Alterar', ['class' => 'btn btn-primary form-action']) !!}
         {!! Form::closeFormActions() !!}
     </div>
 </div>

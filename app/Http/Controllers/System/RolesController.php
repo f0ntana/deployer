@@ -7,7 +7,7 @@ use App\Models\Role;
 use App\Services\Db\Roles\CreateRoleService;
 use App\Services\Db\Roles\DeleteRoleService;
 use App\Services\Db\Roles\UpdateRoleService;
-use App\Services\Db\service;
+use App\Services\Utils\GetRecursiveDbList;
 
 /**
  * @Resource("system/roles")
@@ -51,7 +51,7 @@ class RolesController extends Controller
      */
     public function index()
     {
-        $List = Role::paginate($this->recordsPerPage);
+        $List = GetRecursiveDbList::pairs('roles', 'id', 'name', 'role_id', null, 1);
 
         return view('layouts.page', [
             'contents' => [
@@ -78,7 +78,9 @@ class RolesController extends Controller
                 view('bs.panel', [
                     'title' => 'Criar Perfil',
                     'class' => 'panel-default',
-                    'body' => view('pages.system.roles.create'),
+                    'body' => view('pages.system.roles.create', [
+                        'roles' => GetRecursiveDbList::pairs('roles', 'id', 'name', 'role_id', null, 1, true)
+                    ]),
                 ])
             ],
         ]);
@@ -135,6 +137,7 @@ class RolesController extends Controller
                     'title' => "Alteração de Perfil: {$Role->name}",
                     'class' => 'panel-default',
                     'body' => view('pages.system.roles.edit', [
+                        'roles' => GetRecursiveDbList::pairs('roles', 'id', 'name', 'role_id', null, 1, true),
                         'record' => $Role
                     ]),
                 ])

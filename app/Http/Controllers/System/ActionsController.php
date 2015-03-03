@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use App\Http\Requests\System\Actions\RoleRequest;
-use App\Models\Role;
-use App\Services\Db\RoleService;
-use App\Services\Db\service;
+use App\Http\Requests\System\Actions\ActionRequest;
+use App\Models\Action;
+use App\Services\Db\Actions\CreateActionService;
+use App\Services\Db\Actions\DeleteActionService;
+use App\Services\Db\Actions\UpdateActionService;
+use App\Services\Db\ActionService;
+use App\Services\Utils\GetRecursiveDbList;
 
 /**
  * @Resource("system/actions")
@@ -43,30 +46,13 @@ class ActionsController extends Controller
     ];
 
     /**
-     * @var
-     */
-    private $service;
-
-    /**
-     * Constructor class
-     *
-     * @param RoleService $service
-     */
-    public function __construct(RoleService $service)
-    {
-        parent::__construct();
-
-        $this->service = $service;
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return Response
      */
     public function index()
     {
-        $List = Role::paginate($this->recordsPerPage);
+        $List = GetRecursiveDbList::pairs('actions', 'id', 'name', 'action_id', null);
 
         return view('layouts.page', [
             'contents' => [
@@ -93,7 +79,9 @@ class ActionsController extends Controller
                 view('bs.panel', [
                     'title' => 'Criar Ação',
                     'class' => 'panel-default',
-                    'body' => view('pages.system.actions.create'),
+                    'body' => view('pages.system.actions.create', [
+                        'actions' => GetRecursiveDbList::pairs('actions', 'id', 'name', 'action_id', null, 1)
+                    ]),
                 ])
             ],
         ]);
@@ -102,17 +90,16 @@ class ActionsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param RoleRequest $request
+     * @param ActionRequest $request
+     * @param CreateActionService $create
+     *
      * @return Response
      */
-    public function store(RoleRequest $request)
+    public function store(ActionRequest $request, CreateActionService $create)
     {
-        $Role = $this->service->create([
-            'action_id' => $request->get('action_id', null),
-            'name' => $request->get('name')
-        ]);
+        $Action = $create->execute($request->all());
 
-        if ($Role) {
+        if ($Action) {
             return $this->toRoute('system.actions.index', "Registro criado com sucesso", 'success');
         } else {
             return redirect()->back()
@@ -140,15 +127,16 @@ class ActionsController extends Controller
      */
     public function edit($id)
     {
-        $Role = Role::find($id);
+        $Action = Action::find($id);
 
         return view('layouts.page', [
             'contents' => [
                 view('bs.panel', [
-                    'title' => "Alteração de Ação: {$Role->name}",
+                    'title' => "Alteração de Ação: {$Action->name}",
                     'class' => 'panel-default',
                     'body' => view('pages.system.actions.edit', [
-                        'record' => $Role
+                        'actions' => GetRecursiveDbList::pairs('actions', 'id', 'name', 'action_id', null, 1),
+                        'record' => $Action
                     ]),
                 ])
             ],
@@ -159,17 +147,16 @@ class ActionsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int $id
-     * @param RoleRequest $request
+     * @param ActionRequest $request
+     * @param UpdateActionService $update
+     *
      * @return Response
      */
-    public function update($id, RoleRequest $request)
+    public function update($id, ActionRequest $request, UpdateActionService $update)
     {
-        $Role = $this->service->update([
-            'action_id' => $request->get('action_id', null),
-            'name' => $request->get('name')
-        ], $id);
+        $Action = $update->execute($request->all(), $id);
 
-        if ($Role) {
+        if ($Action) {
             return $this->toRoute('system.actions.index', "Registro alterado com sucesso", 'success');
         } else {
             return redirect()->back()
@@ -182,11 +169,13 @@ class ActionsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int $id
+     * @param DeleteActionService $delete
+     *
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($id, DeleteActionService $delete)
     {
-        if ($this->service->remove($id)) {
+        if ($delete->execute($id)) {
             return $this->toRoute('system.actions.index', "Registro removido com sucesso", 'success');
         } else {
             return $this->toRoute('system.actions.index', "Não foi possível remover o registro.", 'error');

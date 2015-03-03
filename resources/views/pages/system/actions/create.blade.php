@@ -5,8 +5,8 @@
         {!! Form::text('name', null, ['placeholder' => 'Servidores']) !!}
         {!! Form::closeGroup() !!}
 
-        {!! Form::openGroup('role_id', 'Pai') !!}
-        {!! Form::select('role_id', [], null, ['placeholder' => 'Atendimento']) !!}
+        {!! Form::openGroup('action_id', 'Pai') !!}
+        {!! Form::select('action_id', $actions, null, ['placeholder' => 'Atendimento']) !!}
         {!! Form::closeGroup() !!}
 
         {!! Form::openGroup('order', 'Ordem') !!}
