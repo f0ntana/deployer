@@ -20,7 +20,11 @@ class AnnotationsServiceProvider extends ServiceProvider
     protected $scanRoutes = [
         'App\Http\Controllers\Auth\AuthController',
         'App\Http\Controllers\HomeController',
+        /**
+         * System Module Routes
+         */
         'App\Http\Controllers\System\RolesController',
+        'App\Http\Controllers\System\ActionsController',
     ];
 
     /**

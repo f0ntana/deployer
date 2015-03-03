@@ -2,47 +2,62 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use App\Http\Requests\System\Roles\RoleRequest;
+use App\Http\Requests\System\Actions\RoleRequest;
 use App\Models\Role;
-use App\Services\Db\Roles\CreateRoleService;
-use App\Services\Db\Roles\DeleteRoleService;
-use App\Services\Db\Roles\UpdateRoleService;
+use App\Services\Db\RoleService;
 use App\Services\Db\service;
 
 /**
- * @Resource("system/roles")
+ * @Resource("system/actions")
  * @Middleware("auth")
  */
-class RolesController extends Controller
+class ActionsController extends Controller
 {
-    protected $title = 'Perfis';
+    protected $title = 'Ações';
 
     protected $actions = [
-        'system.roles.index' => [
+        'system.actions.index' => [
             [
                 'label' => 'Adicionar',
-                'route' => 'system.roles.create',
+                'route' => 'system.actions.create',
                 'icon' => 'fa-plus',
                 'btn' => 'btn-primary'
             ]
         ],
-        'system.roles.create' => [
+        'system.actions.create' => [
             [
                 'label' => 'Voltar',
-                'route' => 'system.roles.index',
+                'route' => 'system.actions.index',
                 'icon' => 'fa-arrow-left',
                 'btn' => 'btn-default'
             ]
         ],
-        'system.roles.edit' => [
+        'system.actions.edit' => [
             [
                 'label' => 'Voltar',
-                'route' => 'system.roles.index',
+                'route' => 'system.actions.index',
                 'icon' => 'fa-arrow-left',
                 'btn' => 'btn-default'
             ]
         ]
     ];
+
+    /**
+     * @var
+     */
+    private $service;
+
+    /**
+     * Constructor class
+     *
+     * @param RoleService $service
+     */
+    public function __construct(RoleService $service)
+    {
+        parent::__construct();
+
+        $this->service = $service;
+    }
 
     /**
      * Display a listing of the resource.
@@ -56,9 +71,9 @@ class RolesController extends Controller
         return view('layouts.page', [
             'contents' => [
                 view('bs.panel', [
-                    'title' => 'Lista de Perfis',
+                    'title' => 'Lista de Ações',
                     'class' => 'panel-default',
-                    'nobody' => view('pages.system.roles.index', [
+                    'nobody' => view('pages.system.actions.index', [
                         'records' => $List
                     ]),
                 ])
@@ -76,9 +91,9 @@ class RolesController extends Controller
         return view('layouts.page', [
             'contents' => [
                 view('bs.panel', [
-                    'title' => 'Criar Perfil',
+                    'title' => 'Criar Ação',
                     'class' => 'panel-default',
-                    'body' => view('pages.system.roles.create'),
+                    'body' => view('pages.system.actions.create'),
                 ])
             ],
         ]);
@@ -88,19 +103,17 @@ class RolesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param RoleRequest $request
-     * @param CreateRoleService $create
-     *
      * @return Response
      */
-    public function store(RoleRequest $request, CreateRoleService $create)
+    public function store(RoleRequest $request)
     {
-        $Role = $create->execute([
-            'role_id' => $request->get('role_id', null),
+        $Role = $this->service->create([
+            'action_id' => $request->get('action_id', null),
             'name' => $request->get('name')
         ]);
 
         if ($Role) {
-            return $this->toRoute('system.roles.index', "Registro criado com sucesso", 'success');
+            return $this->toRoute('system.actions.index', "Registro criado com sucesso", 'success');
         } else {
             return redirect()->back()
                 ->withInput($request->all())
@@ -132,9 +145,9 @@ class RolesController extends Controller
         return view('layouts.page', [
             'contents' => [
                 view('bs.panel', [
-                    'title' => "Alteração de Perfil: {$Role->name}",
+                    'title' => "Alteração de Ação: {$Role->name}",
                     'class' => 'panel-default',
-                    'body' => view('pages.system.roles.edit', [
+                    'body' => view('pages.system.actions.edit', [
                         'record' => $Role
                     ]),
                 ])
@@ -147,19 +160,17 @@ class RolesController extends Controller
      *
      * @param  int $id
      * @param RoleRequest $request
-     * @param UpdateRoleService $update
-     *
      * @return Response
      */
-    public function update($id, RoleRequest $request, UpdateRoleService $update)
+    public function update($id, RoleRequest $request)
     {
-        $Role = $update->execute([
-            'role_id' => $request->get('role_id', null),
+        $Role = $this->service->update([
+            'action_id' => $request->get('action_id', null),
             'name' => $request->get('name')
         ], $id);
 
         if ($Role) {
-            return $this->toRoute('system.roles.index', "Registro alterado com sucesso", 'success');
+            return $this->toRoute('system.actions.index', "Registro alterado com sucesso", 'success');
         } else {
             return redirect()->back()
                 ->withInput($request->all())
@@ -171,16 +182,14 @@ class RolesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int $id
-     * @param DeleteRoleService $delete
-     *
      * @return Response
      */
-    public function destroy($id, DeleteRoleService $delete)
+    public function destroy($id)
     {
-        if ($delete->execute($id)) {
-            return $this->toRoute('system.roles.index', "Registro removido com sucesso", 'success');
+        if ($this->service->remove($id)) {
+            return $this->toRoute('system.actions.index', "Registro removido com sucesso", 'success');
         } else {
-            return $this->toRoute('system.roles.index', "Não foi possível remover o registro.", 'error');
+            return $this->toRoute('system.actions.index', "Não foi possível remover o registro.", 'error');
         }
     }
 
