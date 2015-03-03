@@ -165,7 +165,7 @@
           : this.hide.call(this)
       }, this));;
 
-      if (doAnimate) this.$backdrop[0].offsetWidth;; // force reflow
+      if (doAnimate) this.$backdrop[0].offsetWidth;;; // force reflow
 
       this.$backdrop.addClass('in');;
 
