@@ -44,11 +44,6 @@ class RolesController extends Controller
         ]
     ];
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
     public function index()
     {
         $List = GetRecursiveDbList::pairs('roles', 'id', 'name', 'role_id', null, 1);
@@ -66,11 +61,6 @@ class RolesController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
     public function create()
     {
         return view('layouts.page', [
@@ -86,14 +76,6 @@ class RolesController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param RoleRequest $request
-     * @param CreateRoleService $create
-     *
-     * @return Response
-     */
     public function store(RoleRequest $request, CreateRoleService $create)
     {
         $Role = $create->execute([
@@ -110,23 +92,11 @@ class RolesController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return Response
-     */
     public function edit($id)
     {
         $Role = Role::find($id);
@@ -145,15 +115,6 @@ class RolesController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int $id
-     * @param RoleRequest $request
-     * @param UpdateRoleService $update
-     *
-     * @return Response
-     */
     public function update($id, RoleRequest $request, UpdateRoleService $update)
     {
         $Role = $update->execute([
@@ -170,14 +131,6 @@ class RolesController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @param DeleteRoleService $delete
-     *
-     * @return Response
-     */
     public function destroy($id, DeleteRoleService $delete)
     {
         if ($delete->execute($id)) {
@@ -185,6 +138,26 @@ class RolesController extends Controller
         } else {
             return $this->toRoute('system.roles.index', "Não foi possível remover o registro.", 'error');
         }
+    }
+
+    /**
+     * @Get("system/roles/{id}/permissions", as="system.roles.permissions")
+     */
+    public function permissions($id)
+    {
+        $Role = Role::find($id);
+
+        return view('layouts.page', [
+            'contents' => [
+                view('bs.panel', [
+                    'title' => "Lista de permissões do perfil: {$Role->name}",
+                    'class' => 'panel-default',
+                    'nobody' => view('pages.system.roles.permissions', [
+                        'record' => $Role
+                    ]),
+                ])
+            ],
+        ]);
     }
 
 }

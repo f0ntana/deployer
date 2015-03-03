@@ -15,6 +15,10 @@
                     {!! Form::button('editar', ['type' => 'submit', 'class' => 'btn btn-default btn-xs']) !!}
                     {!! Form::close() !!}
 
+                    {!! Form::open(['method' => 'get', 'route' => ['system.roles.permissions', $id]]) !!}
+                    {!! Form::button('permissões', ['type' => 'submit', 'class' => 'btn btn-default btn-xs']) !!}
+                    {!! Form::close() !!}
+
                     {!! Form::open(['method' => 'delete', 'class' => 'delete-record', 'route' => ['system.roles.destroy', $id]]) !!}
                     {!! Form::button('remover', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs']) !!}
                     {!! Form::close() !!}
