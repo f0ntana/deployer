@@ -40,6 +40,7 @@ gulp.task('js', function () {
     return gulp.src([
         paths.dev.vendor + 'jquery/dist/jquery.js',
         paths.dev.vendor + 'bootstrap/dist/js/bootstrap.js',
+        paths.dev.vendor + 'iCheck/icheck.js',
         paths.dev.js + '**/*.js'
     ])
         .pipe(concat('app.min.js'))
