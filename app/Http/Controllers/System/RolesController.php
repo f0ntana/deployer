@@ -153,6 +153,7 @@ class RolesController extends Controller
                     'title' => "Lista de permissões do perfil: {$Role->name}",
                     'class' => 'panel-default',
                     'nobody' => view('pages.system.roles.permissions', [
+                        'actions' => GetRecursiveDbList::pairs('actions', 'id', 'name', 'action_id', null, 1, false),
                         'record' => $Role
                     ]),
                 ])
