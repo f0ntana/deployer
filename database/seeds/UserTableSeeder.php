@@ -12,6 +12,7 @@ class UserTableSeeder extends Seeder
         DB::table('users')->delete();
 
         User::create([
+            'role_id' => Role::whereSlug('root')->first()->id,
             'name' => 'Administrador',
             'email' => 'admin@admin.com.br',
             'password' => bcrypt('123456'),

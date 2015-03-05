@@ -7,7 +7,7 @@
                     <div class="permission">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="permissions[]" value="{{ $id }}"> {{ $value }}
+                                <input type="checkbox" name="permissions[]" {!! Acl::hasPermissionById($id) ? 'checked' : '' !!} value="{{ $id }}"> {{ $value }}
                             </label>
                         </div>
                     </div>

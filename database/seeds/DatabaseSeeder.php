@@ -10,9 +10,9 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call('UserTableSeeder');
         $this->call('RoleTableSeeder');
         $this->call('ActionTableSeeder');
+        $this->call('UserTableSeeder');
     }
 
 }

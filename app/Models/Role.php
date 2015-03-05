@@ -23,7 +23,12 @@ class Role extends Model
 
     public function permissions()
     {
-        return $this->belongsToMany('App\Models\Action');
+        return $this->belongsToMany('App\Models\Action')->withTimestamps();
+    }
+
+    public function users()
+    {
+        return $this->hasMany('App\Models\User');
     }
 
 }
