@@ -12,6 +12,15 @@ class ActionTableSeeder extends Seeder
 
         Action::create([
             'action_id' => null,
+            'action' => 'dashboard',
+            'name' => 'Dashboard',
+            'slug' => 'dashboard',
+            'order' => 0,
+            'type' => 'M',
+        ]);
+
+        Action::create([
+            'action_id' => null,
             'action' => 'system',
             'name' => 'Sistema',
             'slug' => 'sistema',

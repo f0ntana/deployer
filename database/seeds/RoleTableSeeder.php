@@ -15,6 +15,12 @@ class RoleTableSeeder extends Seeder
             'name' => 'Root',
             'slug' => 'root',
         ]);
+
+        Role::create([
+            'role_id' => Role::whereSlug('root')->first()->id,
+            'name' => 'Administrador',
+            'slug' => 'administrador',
+        ]);
     }
 
 }

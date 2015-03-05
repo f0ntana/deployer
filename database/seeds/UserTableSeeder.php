@@ -13,8 +13,16 @@ class UserTableSeeder extends Seeder
 
         User::create([
             'role_id' => Role::whereSlug('root')->first()->id,
+            'name' => 'Root',
+            'email' => 'root@deployer.com.br',
+            'password' => bcrypt('123456'),
+            'picture' => 'admin.jpg',
+        ]);
+
+        User::create([
+            'role_id' => Role::whereSlug('administrador')->first()->id,
             'name' => 'Administrador',
-            'email' => 'admin@admin.com.br',
+            'email' => 'admin@deployer.com.br',
             'password' => bcrypt('123456'),
             'picture' => 'admin.jpg',
         ]);

@@ -1,11 +1,11 @@
 <div class="loggeduser">
     <figure>
-        <img src="https://pbs.twimg.com/profile_images/2150446322/Carnaval_2011_0049_bigger.JPG" alt="Renato Dehnhardt" class="img-circle" height="73" width="73"/>
-        <figcaption>Renato Dehnhardt</figcaption>
+        <img src="/assets/img/user.jpg" alt="{{ Auth::user()->name }}" class="img-responsive img-circle" height="73" width="73"/>
+        <figcaption>{{ Auth::user()->name }}</figcaption>
     </figure>
 
     <div class="actions">
-        <a href="" class="btn btn-xs"><i class="fa fa-user"></i> Meus Dados</a>
-        <a href="" class="btn btn-xs"><i class="fa fa-sign-out"></i> Sair</a>
+        <a href="/profile" class="btn btn-xs"><i class="fa fa-user"></i> Meus Dados</a>
+        <a href="/auth/logout" class="btn btn-xs"><i class="fa fa-sign-out"></i> Sair</a>
     </div>
 </div>
