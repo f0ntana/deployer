@@ -1,10 +1,6 @@
 {!! Form::open(['method' => 'post', 'route' => ['config.projects.store']]) !!}
 {!! Form::openGroup('name', 'Nome') !!}
-{!! Form::text('name', null, ['placeholder' => 'Atendimento']) !!}
-{!! Form::closeGroup() !!}
-
-{!! Form::openGroup('role_id', 'Pai') !!}
-{!! Form::select('role_id', $roles, null, ['placeholder' => 'Atendimento']) !!}
+{!! Form::text('name', null, ['placeholder' => 'LKD-Jobs']) !!}
 {!! Form::closeGroup() !!}
 
 {!! Form::openFormActions() !!}

@@ -16,11 +16,11 @@
 
                 @if (Acl::hasPermission('system'))
                 <li>
-                    <a href="#" data-toggle="collapse" data-target="#toggleDemo" data-parent="#sidenav01" class="collapsed">
+                    <a href="#" data-toggle="collapse" data-target="#system" data-parent="#sidenav01" class="collapsed">
                         Sistema &nbsp; <span class="caret pull-right"></span>
                     </a>
 
-                    <div class="collapse" id="toggleDemo" style="height: 0px;">
+                    <div class="collapse" id="system" style="height: 0px;">
                         <ul class="nav nav-list">
                             @if (Acl::hasPermission('system.roles.index'))
                             <li><a href="{{ URL::route('system.roles.index') }}">Perfis</a></li>
@@ -32,6 +32,26 @@
                         </ul>
                     </div>
                 </li>
+                    @endif
+
+                    @if (Acl::hasPermission('config'))
+                        <li>
+                            <a href="#" data-toggle="collapse" data-target="#config" data-parent="#sidenav01" class="collapsed">
+                                Configurações &nbsp; <span class="caret pull-right"></span>
+                            </a>
+
+                            <div class="collapse" id="config" style="height: 0px;">
+                                <ul class="nav nav-list">
+                                    @if (Acl::hasPermission('config.projects.index'))
+                                        <li><a href="{{ URL::route('config.projects.index') }}">Projetos</a></li>
+                                    @endif
+
+                                    @if (Acl::hasPermission('config.servers.index'))
+                                        <li><a href="{{ URL::route('config.servers.index') }}">Servidores</a></li>
+                                    @endif
+                                </ul>
+                            </div>
+                        </li>
                 @endif
             </ul>
         </div>

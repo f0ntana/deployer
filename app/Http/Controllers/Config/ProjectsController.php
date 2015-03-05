@@ -8,7 +8,6 @@ use App\Services\Db\Projects\AttachPermissionsService;
 use App\Services\Db\Projects\CreateProjectService;
 use App\Services\Db\Projects\DeleteProjectService;
 use App\Services\Db\Projects\UpdateProjectService;
-use App\Services\Utils\GetRecursiveDbList;
 use Request;
 
 /**
@@ -48,7 +47,7 @@ class ProjectsController extends Controller
 
     public function index()
     {
-        $List = GetRecursiveDbList::pairs('projects', 'id', 'name', 'project_id', null, 1);
+        $List = Project::paginate(10);
 
         return view('layouts.page', [
             'contents' => [
@@ -68,11 +67,9 @@ class ProjectsController extends Controller
         return view('layouts.page', [
             'contents' => [
                 view('bs.panel', [
-                    'title' => 'Criar Perfil',
+                    'title' => 'Criar Projeto',
                     'class' => 'panel-default',
-                    'body' => view('pages.config.projects.create', [
-                        'projects' => GetRecursiveDbList::pairs('projects', 'id', 'name', 'project_id', null, 1, true)
-                    ]),
+                    'body' => view('pages.config.projects.create'),
                 ])
             ],
         ]);
@@ -80,12 +77,7 @@ class ProjectsController extends Controller
 
     public function store(ProjectRequest $request, CreateProjectService $create)
     {
-        $Project = $create->execute([
-            'project_id' => $request->get('project_id', null),
-            'name' => $request->get('name')
-        ]);
-
-        if ($Project) {
+        if ($create->execute($request->all())) {
             return $this->toRoute('config.projects.index', "Registro criado com sucesso", 'success');
         } else {
             return redirect()->back()
@@ -106,10 +98,9 @@ class ProjectsController extends Controller
         return view('layouts.page', [
             'contents' => [
                 view('bs.panel', [
-                    'title' => "Alteração de Perfil: {$Project->name}",
+                    'title' => "Alteração de Projeto: {$Project->name}",
                     'class' => 'panel-default',
                     'body' => view('pages.config.projects.edit', [
-                        'projects' => GetRecursiveDbList::pairs('projects', 'id', 'name', 'project_id', null, 1, true),
                         'record' => $Project
                     ]),
                 ])
@@ -119,10 +110,7 @@ class ProjectsController extends Controller
 
     public function update($id, ProjectRequest $request, UpdateProjectService $update)
     {
-        $Project = $update->execute([
-            'project_id' => $request->get('project_id', null),
-            'name' => $request->get('name')
-        ], $id);
+        $Project = $update->execute($request->all(), $id);
 
         if ($Project) {
             return $this->toRoute('config.projects.index', "Registro alterado com sucesso", 'success');
