@@ -1,25 +1,28 @@
 <?php namespace App\Services;
 
 use App\Models\Action;
+use App\Models\Role;
 use Auth;
 
 class AclService
 {
 
-    public static function hasPermissionById($id)
+    public static function hasPermissionById($id, Role $Role = null)
     {
-        return self::hasPermission(Action::find($id)->action);
+        if ($Role) {
+            return self::has($Role, Action::find($id)->action);
+        } else {
+            return self::hasPermission(Action::find($id)->action);
+        }
     }
 
-    public static function hasPermission($action)
+    public static function has(Role $Role, $action)
     {
-        $User = Auth::user();
-
-        if ($User->role->slug == 'root') {
+        if ($Role->slug == 'root') {
             return true;
         } else {
-            if ($User->role->permissions->count()) {
-                foreach ($User->role->permissions as $permission) {
+            if ($Role->permissions->count()) {
+                foreach ($Role->permissions as $permission) {
                     if ($permission->action == $action) {
                         return true;
                     }
@@ -28,6 +31,11 @@ class AclService
         }
 
         return false;
+    }
+
+    public static function hasPermission($action)
+    {
+        return self::has(Auth::user()->role, $action);
     }
 
 }

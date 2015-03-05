@@ -4,13 +4,15 @@
         <div class="actions">
             @if (count($actions))
                 @foreach($actions as $id => $value)
-                    <div class="permission">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="permissions[]" {!! Acl::hasPermissionById($id) ? 'checked' : '' !!} value="{{ $id }}"> {{ $value }}
-                            </label>
+                    @if (Acl::hasPermissionById($id))
+                        <div class="permission">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="permissions[]" {!! Acl::hasPermissionById($id, $record) ? "checked" : "" !!} value="{{ $id }}"> {{ $value }}
+                                </label>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 @endforeach
             @endif
         </div>
