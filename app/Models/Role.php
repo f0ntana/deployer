@@ -41,4 +41,14 @@ class Role extends Model
         return $this->hasMany('App\Models\Role');
     }
 
+    /**
+     * Return permissions os role
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function permissions()
+    {
+        return $this->belongsToMany('App\Models\Action');
+    }
+
 }

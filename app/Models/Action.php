@@ -33,12 +33,18 @@ class Action extends Model
 
     /**
      * Return parent roles of role
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function actions()
     {
         return $this->hasMany('App\Models\Action');
+    }
+
+    /**
+     * Return roles of action
+     */
+    public function roles()
+    {
+        return $this->belongsToMany('App\Models\Role');
     }
 
 }

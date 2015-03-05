@@ -4,10 +4,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Http\Requests\System\Roles\RoleRequest;
 use App\Models\Role;
+use App\Services\Db\Roles\AttachPermissionsService;
 use App\Services\Db\Roles\CreateRoleService;
 use App\Services\Db\Roles\DeleteRoleService;
 use App\Services\Db\Roles\UpdateRoleService;
 use App\Services\Utils\GetRecursiveDbList;
+use Request;
 
 /**
  * @Resource("system/roles")
@@ -159,6 +161,24 @@ class RolesController extends Controller
                 ])
             ],
         ]);
+    }
+
+    /**
+     * @Post("system/roles/{id}/permissions", as="system.roles.permissions.save")
+     *
+     * @param $id
+     * @param AttachPermissionsService $service
+     */
+    public function savePermissions($id, AttachPermissionsService $service)
+    {
+        $attached = $service->execute(Role::find($id), Request::get('permissions'));
+        dd($attached);
+
+        if ($attached) {
+            return $this->toRoute('system.roles.index', "Permissões alteradas com sucesso.", 'success');
+        } else {
+            return $this->toRoute('system.roles.index', "Não foi possível alterar as as permissões.", 'error');
+        }
     }
 
 }

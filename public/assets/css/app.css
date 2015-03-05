@@ -6887,7 +6887,7 @@ a.list-group-item-danger.active:focus {
   margin-bottom: 20px;
 }
 aside.navigation {
-  width: 20%;
+    width: 18%;
   background: #474546;
   position: fixed;
   height: 100%;
@@ -6973,7 +6973,7 @@ aside.navigation .loggeduser .actions a {
   }
 }
 main.main {
-  margin-left: 20%;
+    margin-left: 18%;
 }
 section.sub-header,
 header {
@@ -7059,9 +7059,14 @@ section.content {
   border-color: #aabdd1;
   cursor: not-allowed;
 }
-.permission {
+
+.permissions .actions .permission {
   border-bottom: 1px dotted #dddddd;
   padding: 0 15px;
+}
+
+.permissions .form-actions {
+    padding: 20px;
 }
 body {
   background-image: url('/assets/img/crossword.png');

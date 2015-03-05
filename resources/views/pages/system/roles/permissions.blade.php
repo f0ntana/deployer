@@ -1,17 +1,23 @@
-<div class="row">
+<div class="row permissions">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <form action="" method="post">
+        {!! Form::open(['method' => 'post', 'route' => ['system.roles.permissions.save', $record->id]]) !!}
+        <div class="actions">
             @if (count($actions))
                 @foreach($actions as $id => $value)
                     <div class="permission">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox"> {{ $value }}
+                                <input type="checkbox" name="permissions[]" value="{{ $id }}"> {{ $value }}
                             </label>
                         </div>
-                    </div>
+                        </div>
                 @endforeach
             @endif
-        </form>
+        </div>
+
+        {!! Form::openFormActions() !!}
+        {!! Form::submit('Salvar', ['class' => 'btn btn-primary form-action']) !!}
+        {!! Form::closeFormActions() !!}
+        {!! Form::close() !!}
     </div>
 </div>
