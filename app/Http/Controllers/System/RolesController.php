@@ -142,42 +142,4 @@ class RolesController extends Controller
         }
     }
 
-    /**
-     * @Get("system/roles/{id}/permissions", as="system.roles.permissions")
-     */
-    public function permissions($id)
-    {
-        $Role = Role::find($id);
-
-        return view('layouts.page', [
-            'contents' => [
-                view('bs.panel', [
-                    'title' => "Lista de permissões do perfil: {$Role->name}",
-                    'class' => 'panel-default',
-                    'nobody' => view('pages.system.roles.permissions', [
-                        'actions' => GetRecursiveDbList::pairs('actions', 'id', 'name', 'action_id', null, 1, false),
-                        'record' => $Role
-                    ]),
-                ])
-            ],
-        ]);
-    }
-
-    /**
-     * @Post("system/roles/{id}/permissions", as="system.roles.permissions.save")
-     *
-     * @param $id
-     * @param AttachPermissionsService $service
-     */
-    public function savePermissions($id, AttachPermissionsService $service)
-    {
-        $attached = $service->execute(Role::find($id), Request::get('permissions'));
-
-        if ($attached) {
-            return $this->toRoute('system.roles.index', "Permissões alteradas com sucesso.", 'success');
-        } else {
-            return $this->toRoute('system.roles.index', "Não foi possível alterar as as permissões.", 'error');
-        }
-    }
-
 }

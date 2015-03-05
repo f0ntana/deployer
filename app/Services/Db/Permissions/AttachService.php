@@ -1,9 +1,9 @@
-<?php namespace App\Services\Db\Roles;
+<?php namespace App\Services\Db\Permissions;
 
 use App\Models\Role;
 use Exception;
 
-class AttachPermissionsService extends RoleService
+class AttachService
 {
 
     public function execute(Role $Role, array $permissions = [])

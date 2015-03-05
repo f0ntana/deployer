@@ -25,6 +25,7 @@ class AnnotationsServiceProvider extends ServiceProvider
          */
         'App\Http\Controllers\System\RolesController',
         'App\Http\Controllers\System\ActionsController',
+        'App\Http\Controllers\System\PermissionsController',
     ];
 
     /**

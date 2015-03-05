@@ -15,7 +15,7 @@
                     {!! Form::button('editar', ['type' => 'submit', 'class' => 'btn btn-default btn-xs']) !!}
                     {!! Form::close() !!}
 
-                    {!! Form::open(['method' => 'get', 'route' => ['system.roles.permissions', $id]]) !!}
+                    {!! Form::open(['method' => 'get', 'route' => ['system.permissions.get', $id]]) !!}
                     {!! Form::button('permissões', ['type' => 'submit', 'class' => 'btn btn-default btn-xs']) !!}
                     {!! Form::close() !!}
 

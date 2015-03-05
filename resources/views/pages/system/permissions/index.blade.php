@@ -1,6 +1,6 @@
 <div class="row permissions">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        {!! Form::open(['method' => 'post', 'route' => ['system.roles.permissions.save', $record->id]]) !!}
+        {!! Form::open(['method' => 'post', 'route' => ['system.permissions.post', $record->id]]) !!}
         <div class="actions">
             @if (count($actions))
                 @foreach($actions as $id => $value)
@@ -10,7 +10,7 @@
                                 <input type="checkbox" name="permissions[]" value="{{ $id }}"> {{ $value }}
                             </label>
                         </div>
-                        </div>
+                    </div>
                 @endforeach
             @endif
         </div>
