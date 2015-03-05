@@ -33,6 +33,11 @@ class AnnotationsServiceProvider extends ServiceProvider
         'App\Http\Controllers\System\RolesController',
         'App\Http\Controllers\System\ActionsController',
         'App\Http\Controllers\System\PermissionsController',
+        /**
+         * Config Module Routes
+         */
+        'App\Http\Controllers\Config\ServersController',
+        'App\Http\Controllers\Config\ProjectsController',
     ];
 
     /**

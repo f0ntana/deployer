@@ -61,7 +61,11 @@ abstract class Controller extends BaseController
      */
     private function getRoute()
     {
-        return Route::getCurrentRoute()->getName();
+        $Route = Route::getCurrentRoute();
+
+        if (isset($Route)) {
+            return $Route->getName();
+        }
     }
 
     /**
