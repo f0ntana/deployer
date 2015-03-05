@@ -172,7 +172,6 @@ class RolesController extends Controller
     public function savePermissions($id, AttachPermissionsService $service)
     {
         $attached = $service->execute(Role::find($id), Request::get('permissions'));
-        dd($attached);
 
         if ($attached) {
             return $this->toRoute('system.roles.index', "Permissões alteradas com sucesso.", 'success');
