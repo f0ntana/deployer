@@ -1,15 +1,15 @@
-<?php namespace App\Services\Db\Projects;
+<?php namespace App\Services\Db\Environments;
 
-use App\Models\Project;
+use App\Models\Environment;
 use Illuminate\Support\Str;
 use Validator;
 
-class CreateProjectService extends ProjectService
+class CreateEnvironmentService extends EnvironmentService
 {
 
     public function execute(array $data)
     {
-        return Project::create([
+        return Environment::create([
             'slug' => Str::slug($data['name']),
             'name' => $data['name'],
             'repository' => $data['repository'],

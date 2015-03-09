@@ -2,10 +2,10 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
+class Environment extends Model
 {
 
-    protected $table = 'projects';
+    protected $table = 'environments';
 
     protected $fillable = ['slug', 'name', 'repository', 'envoy'];
 

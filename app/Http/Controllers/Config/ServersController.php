@@ -48,7 +48,7 @@ class ServersController extends Controller
 
     public function index()
     {
-        $List = GetRecursiveDbList::pairs('servers', 'id', 'name', 'server_id', null, 1);
+        $List = Server::paginate(10);
 
         return view('layouts.page', [
             'contents' => [
@@ -68,11 +68,9 @@ class ServersController extends Controller
         return view('layouts.page', [
             'contents' => [
                 view('bs.panel', [
-                    'title' => 'Criar Perfil',
+                    'title' => 'Criar Servidor',
                     'class' => 'panel-default',
-                    'body' => view('pages.config.servers.create', [
-                        'servers' => GetRecursiveDbList::pairs('servers', 'id', 'name', 'server_id', null, 1, true)
-                    ]),
+                    'body' => view('pages.config.servers.create'),
                 ])
             ],
         ]);
@@ -88,9 +86,7 @@ class ServersController extends Controller
         if ($Server) {
             return $this->toRoute('config.servers.index', "Registro criado com sucesso", 'success');
         } else {
-            return redirect()->back()
-                ->withInput($request->all())
-                ->withErrors(["Não foi possível criar o registro."]);
+            return redirect()->back()->withInput($request->all())->withErrors(["Não foi possível criar o registro."]);
         }
     }
 
@@ -106,7 +102,7 @@ class ServersController extends Controller
         return view('layouts.page', [
             'contents' => [
                 view('bs.panel', [
-                    'title' => "Alteração de Perfil: {$Server->name}",
+                    'title' => "Alteração de Servidor: {$Server->name}",
                     'class' => 'panel-default',
                     'body' => view('pages.config.servers.edit', [
                         'servers' => GetRecursiveDbList::pairs('servers', 'id', 'name', 'server_id', null, 1, true),
@@ -127,9 +123,7 @@ class ServersController extends Controller
         if ($Server) {
             return $this->toRoute('config.servers.index', "Registro alterado com sucesso", 'success');
         } else {
-            return redirect()->back()
-                ->withInput($request->all())
-                ->withErrors(["Não foi possível criar o registro."]);
+            return redirect()->back()->withInput($request->all())->withErrors(["Não foi possível criar o registro."]);
         }
     }
 

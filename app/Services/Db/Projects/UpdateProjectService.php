@@ -12,6 +12,8 @@ class UpdateProjectService extends ProjectService
         $Project = Project::find($id);
         $Project->slug = Str::slug($data['name']);
         $Project->name = $data['name'];
+        $Project->repository = $data['repository'];
+        $Project->envoy = $data['envoy'];
 
         return $Project->save();
     }
