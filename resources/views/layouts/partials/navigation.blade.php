@@ -26,16 +26,16 @@
 
                         <div class="collapse" id="config" style="height: 0px;">
                             <ul class="nav nav-list">
+                                @if (Acl::hasPermission('config.environments.index'))
+                                    <li><a href="{{ URL::route('config.environments.index') }}">Ambientes</a></li>
+                                @endif
+
                                 @if (Acl::hasPermission('config.projects.index'))
                                     <li><a href="{{ URL::route('config.projects.index') }}">Projetos</a></li>
                                 @endif
 
                                 @if (Acl::hasPermission('config.servers.index'))
                                     <li><a href="{{ URL::route('config.servers.index') }}">Servidores</a></li>
-                                @endif
-
-                                @if (Acl::hasPermission('config.environments.index'))
-                                    <li><a href="{{ URL::route('config.environments.index') }}">Ambientes</a></li>
                                 @endif
                             </ul>
                         </div>

@@ -14,7 +14,65 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('layouts.page');
+        $panel2 = view('bs.panel', [
+            'title' => "Panel 2",
+            'class' => 'panel-default',
+            'body' => "TESTE 2"
+        ]);
+
+        $panel3 = view('bs.panel', [
+            'title' => "Panel 3",
+            'class' => 'panel-default',
+            'body' => "TESTE 3"
+        ]);
+
+        return view('layouts.page', [
+            'contents' => [
+                view('bs.row', [
+                    'cols' => [
+                        $this->getProjectList(),
+                        $this->getBranchList(),
+                        $this->getEnvironmentList()
+                    ]
+                ])
+            ]
+        ]);
+    }
+
+    private function getProjectList()
+    {
+        return view('bs.col', [
+            'col' => 4,
+            'body' => view('bs.panel', [
+                'title' => "Selecione o Projeto",
+                'class' => 'panel-default',
+                'body' => "TESTE 1"
+            ])
+        ]);
+    }
+
+    private function getBranchList()
+    {
+        return view('bs.col', [
+            'col' => 4,
+            'body' => view('bs.panel', [
+                'title' => "Selecione a Branch",
+                'class' => 'panel-default',
+                'body' => "TESTE 1"
+            ])
+        ]);
+    }
+
+    private function getEnvironmentList()
+    {
+        return view('bs.col', [
+            'col' => 4,
+            'body' => view('bs.panel', [
+                'title' => "Selecione o Ambiente",
+                'class' => 'panel-default',
+                'body' => "TESTE 1"
+            ])
+        ]);
     }
 
 }
