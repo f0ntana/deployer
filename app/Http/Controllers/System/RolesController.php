@@ -80,10 +80,7 @@ class RolesController extends Controller
 
     public function store(RoleRequest $request, CreateRoleService $create)
     {
-        $Role = $create->execute([
-            'role_id' => $request->get('role_id', null),
-            'name' => $request->get('name')
-        ]);
+        $Role = $create->execute($request->all());
 
         if ($Role) {
             return $this->toRoute('system.roles.index', "Registro criado com sucesso", 'success');
@@ -119,10 +116,7 @@ class RolesController extends Controller
 
     public function update($id, RoleRequest $request, UpdateRoleService $update)
     {
-        $Role = $update->execute([
-            'role_id' => $request->get('role_id', null),
-            'name' => $request->get('name')
-        ], $id);
+        $Role = $update->execute($request->all(), $id);
 
         if ($Role) {
             return $this->toRoute('system.roles.index', "Registro alterado com sucesso", 'success');
