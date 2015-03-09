@@ -7279,3 +7279,7 @@ body {
     background-image: url(/assets/img/crossword.png);
     background-color: #ECF0F1
 }
+
+.deployer .form-control {
+    border: none
+}
