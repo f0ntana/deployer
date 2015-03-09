@@ -18,6 +18,7 @@ class CreateProjectsTable extends Migration
             $table->string('name')->unique();
             $table->string('slug')->unique();
             $table->string('repository');
+            $table->string('folder');
             $table->text('envoy');
             $table->timestamps();
         });

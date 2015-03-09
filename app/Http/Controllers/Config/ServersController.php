@@ -94,7 +94,6 @@ class ServersController extends Controller
     public function edit($id)
     {
         $Server = Server::find($id);
-        dd($Server->environments);
 
         return view('layouts.page', [
             'contents' => [

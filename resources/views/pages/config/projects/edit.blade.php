@@ -1,15 +1,21 @@
 {!! Form::model($record, ['method' => 'put', 'route' => ['config.projects.update', $record->id]]) !!}
 
 <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
         {!! Form::openGroup('name', 'Nome') !!}
         {!! Form::text('name', null, ['placeholder' => 'LKD-Jobs']) !!}
         {!! Form::closeGroup() !!}
     </div>
 
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
         {!! Form::openGroup('repository', 'Repositório') !!}
         {!! Form::text('repository', null, ['placeholder' => 'git@github.com:LojasKD/LKD-Jobs.git']) !!}
+        {!! Form::closeGroup() !!}
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        {!! Form::openGroup('folder', 'Pasta') !!}
+        {!! Form::text('folder', null, ['placeholder' => 'FC-DEV']) !!}
         {!! Form::closeGroup() !!}
     </div>
 </div>
