@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Deploy;
 
 use App\Http\Controllers\Controller;
+use App\Models\Project;
 
 /**
  * @Middleware("auth")
@@ -41,12 +42,16 @@ class HomeController extends Controller
 
     private function getProjectList()
     {
+        $Projects = Project::all();
+
         return view('bs.col', [
             'col' => 4,
             'body' => view('bs.panel', [
                 'title' => "Selecione o Projeto",
                 'class' => 'panel-default',
-                'body' => "TESTE 1"
+                'nobody' => view('pages.deploy.projects', [
+                    'projects' => $Projects
+                ])
             ])
         ]);
     }

@@ -1,4 +1,5 @@
 @import url("//fonts.googleapis.com/css?family=Lato:400,700,400italic");
+@import "../vendor/iCheck/skins/all.css";
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -7059,12 +7060,10 @@ section.content {
   border-color: #aabdd1;
   cursor: not-allowed;
 }
-
 .permissions .actions .permission {
   border-bottom: 1px dotted #dddddd;
   padding: 0 15px;
 }
-
 .permissions .form-actions {
     padding: 20px;
 }
