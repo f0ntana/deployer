@@ -6,6 +6,7 @@ use App\Http\Requests\Config\Environments\EnvironmentRequest;
 use App\Models\Environment;
 use App\Models\Server;
 use App\Services\Db\Environments\AttachPermissionsService;
+use App\Services\Db\Environments\AttachServerService;
 use App\Services\Db\Environments\CreateEnvironmentService;
 use App\Services\Db\Environments\DeleteEnvironmentService;
 use App\Services\Db\Environments\UpdateEnvironmentService;
@@ -159,9 +160,15 @@ class EnvironmentsController extends Controller
      * @param $id
      * @return mixed
      */
-    public function bindServers($id)
+    public function bindServers($id, AttachServerService $service)
     {
-        $Environment = Server::find($id);
+        $Environment = Environment::find($id);
+
+        if ($service->execute($Environment, Request::get('server'))) {
+            return $this->toRoute('config.environments.index', "Servidores relacionados com sucesso!", 'success');
+        } else {
+            return $this->toRoute('config.environments.index', "Não foi possível relacionar os servidores.", 'error');
+        }
     }
 
 }
