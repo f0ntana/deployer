@@ -15,6 +15,7 @@ class EnvironmentService
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
+            'folder' => 'required|max:255',
         ]);
     }
 

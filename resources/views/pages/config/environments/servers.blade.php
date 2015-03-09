@@ -1,6 +1,6 @@
 <div class="row permissions">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        {!! Form::open(['method' => 'post', 'route' => ['config.environments.servers.save', $record->id]]) !!}
+        {!! Form::open(['method' => 'post', 'route' => ['config.environments.servers', $record->id]]) !!}
         <div class="actions">
             @if (count($servers))
                 @foreach($servers as $server)

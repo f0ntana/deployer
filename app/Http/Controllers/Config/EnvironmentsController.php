@@ -155,7 +155,7 @@ class EnvironmentsController extends Controller
     }
 
     /**
-     * @Post("config/environments/{id}/servers", as="config.environments.servers.save")
+     * @Post("config/environments/{id}/servers", as="config.environments.servers")
      *
      * @param $id
      * @return mixed

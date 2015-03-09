@@ -8,7 +8,8 @@ class EnvironmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|max:255',
+            'folder' => 'required|max:255',
         ];
     }
 
