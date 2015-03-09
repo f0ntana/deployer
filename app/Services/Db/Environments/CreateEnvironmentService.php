@@ -11,9 +11,7 @@ class CreateEnvironmentService extends EnvironmentService
     {
         return Environment::create([
             'slug' => Str::slug($data['name']),
-            'name' => $data['name'],
-            'repository' => $data['repository'],
-            'envoy' => $data['envoy'],
+            'name' => $data['name']
         ]);
     }
 

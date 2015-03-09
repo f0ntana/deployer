@@ -12,8 +12,6 @@ class UpdateEnvironmentService extends EnvironmentService
         $Environment = Environment::find($id);
         $Environment->slug = Str::slug($data['name']);
         $Environment->name = $data['name'];
-        $Environment->repository = $data['repository'];
-        $Environment->envoy = $data['envoy'];
 
         return $Environment->save();
     }

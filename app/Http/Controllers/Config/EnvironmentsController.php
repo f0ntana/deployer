@@ -8,7 +8,6 @@ use App\Services\Db\Environments\AttachPermissionsService;
 use App\Services\Db\Environments\CreateEnvironmentService;
 use App\Services\Db\Environments\DeleteEnvironmentService;
 use App\Services\Db\Environments\UpdateEnvironmentService;
-use App\Services\Utils\GetRecursiveDbList;
 use Request;
 
 /**
@@ -78,10 +77,7 @@ class EnvironmentsController extends Controller
 
     public function store(EnvironmentRequest $request, CreateEnvironmentService $create)
     {
-        $Environment = $create->execute([
-            'environment_id' => $request->get('environment_id', null),
-            'name' => $request->get('name')
-        ]);
+        $Environment = $create->execute($request->all());
 
         if ($Environment) {
             return $this->toRoute('config.environments.index', "Registro criado com sucesso", 'success');
@@ -105,7 +101,6 @@ class EnvironmentsController extends Controller
                     'title' => "Alteração de Ambiente: {$Environment->name}",
                     'class' => 'panel-default',
                     'body' => view('pages.config.environments.edit', [
-                        'environments' => GetRecursiveDbList::pairs('environments', 'id', 'name', 'environment_id', null, 1, true),
                         'record' => $Environment
                     ]),
                 ])
@@ -115,10 +110,7 @@ class EnvironmentsController extends Controller
 
     public function update($id, EnvironmentRequest $request, UpdateEnvironmentService $update)
     {
-        $Environment = $update->execute([
-            'environment_id' => $request->get('environment_id', null),
-            'name' => $request->get('name')
-        ], $id);
+        $Environment = $update->execute($request->all(), $id);
 
         if ($Environment) {
             return $this->toRoute('config.environments.index', "Registro alterado com sucesso", 'success');
