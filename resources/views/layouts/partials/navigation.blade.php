@@ -49,6 +49,10 @@
                                     @if (Acl::hasPermission('config.servers.index'))
                                         <li><a href="{{ URL::route('config.servers.index') }}">Servidores</a></li>
                                     @endif
+
+                                    @if (Acl::hasPermission('config.environments.index'))
+                                        <li><a href="{{ URL::route('config.environments.index') }}">Ambientes</a></li>
+                                    @endif
                                 </ul>
                             </div>
                         </li>

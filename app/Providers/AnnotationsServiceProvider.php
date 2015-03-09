@@ -38,6 +38,7 @@ class AnnotationsServiceProvider extends ServiceProvider
          */
         'App\Http\Controllers\Config\ServersController',
         'App\Http\Controllers\Config\ProjectsController',
+        'App\Http\Controllers\Config\EnvironmentsController',
     ];
 
     /**
