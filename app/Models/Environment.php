@@ -9,4 +9,8 @@ class Environment extends Model
 
     protected $fillable = ['slug', 'name', 'repository', 'envoy'];
 
+    public function servers()
+    {
+        return $this->belongsToMany('App\Models\Server')->withTimestamps();
+    }
 }

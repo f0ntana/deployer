@@ -13,11 +13,11 @@
                 <td>{{ $record->name }}</td>
                 <td>{{ $record->created_at->format('d/m/Y H:i') }}</td>
                 <td class="td-actions" nowrap>
-                    {!! Form::open(['method' => 'get', 'route' => ['config.projects.edit', $record->id]]) !!}
+                    {!! Form::open(['method' => 'get', 'route' => ['config.servers.edit', $record->id]]) !!}
                     {!! Form::button('editar', ['type' => 'submit', 'class' => 'btn btn-default btn-xs']) !!}
                     {!! Form::close() !!}
 
-                    {!! Form::open(['method' => 'delete', 'class' => 'delete-record', 'route' => ['config.projects.destroy', $record->id]]) !!}
+                    {!! Form::open(['method' => 'delete', 'class' => 'delete-record', 'route' => ['config.servers.destroy', $record->id]]) !!}
                     {!! Form::button('remover', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs']) !!}
                     {!! Form::close() !!}
                 </td>

@@ -8,7 +8,6 @@ use App\Services\Db\Servers\AttachPermissionsService;
 use App\Services\Db\Servers\CreateServerService;
 use App\Services\Db\Servers\DeleteServerService;
 use App\Services\Db\Servers\UpdateServerService;
-use App\Services\Utils\GetRecursiveDbList;
 use Request;
 
 /**
@@ -78,10 +77,7 @@ class ServersController extends Controller
 
     public function store(ServerRequest $request, CreateServerService $create)
     {
-        $Server = $create->execute([
-            'server_id' => $request->get('server_id', null),
-            'name' => $request->get('name')
-        ]);
+        $Server = $create->execute($request->all());
 
         if ($Server) {
             return $this->toRoute('config.servers.index', "Registro criado com sucesso", 'success');
@@ -98,6 +94,7 @@ class ServersController extends Controller
     public function edit($id)
     {
         $Server = Server::find($id);
+        dd($Server->environments);
 
         return view('layouts.page', [
             'contents' => [
@@ -105,7 +102,6 @@ class ServersController extends Controller
                     'title' => "Alteração de Servidor: {$Server->name}",
                     'class' => 'panel-default',
                     'body' => view('pages.config.servers.edit', [
-                        'servers' => GetRecursiveDbList::pairs('servers', 'id', 'name', 'server_id', null, 1, true),
                         'record' => $Server
                     ]),
                 ])
@@ -115,10 +111,7 @@ class ServersController extends Controller
 
     public function update($id, ServerRequest $request, UpdateServerService $update)
     {
-        $Server = $update->execute([
-            'server_id' => $request->get('server_id', null),
-            'name' => $request->get('name')
-        ], $id);
+        $Server = $update->execute($request->all(), $id);
 
         if ($Server) {
             return $this->toRoute('config.servers.index', "Registro alterado com sucesso", 'success');

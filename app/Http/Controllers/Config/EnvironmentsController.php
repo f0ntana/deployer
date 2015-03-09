@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Http\Requests\Config\Environments\EnvironmentRequest;
 use App\Models\Environment;
+use App\Models\Server;
 use App\Services\Db\Environments\AttachPermissionsService;
 use App\Services\Db\Environments\CreateEnvironmentService;
 use App\Services\Db\Environments\DeleteEnvironmentService;
@@ -126,6 +127,41 @@ class EnvironmentsController extends Controller
         } else {
             return $this->toRoute('config.environments.index', "Não foi possível remover o registro.", 'error');
         }
+    }
+
+    /**
+     * @Get("config/environments/{id}/servers", as="config.environments.servers")
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function servers($id)
+    {
+        $Environment = Environment::find($id);
+
+        return view('layouts.page', [
+            'contents' => [
+                view('bs.panel', [
+                    'title' => "Lista de servidores do ambiente: {$Environment->name}",
+                    'class' => 'panel-default',
+                    'nobody' => view('pages.config.environments.servers', [
+                        'servers' => Server::all(),
+                        'record' => $Environment
+                    ]),
+                ])
+            ],
+        ]);
+    }
+
+    /**
+     * @Post("config/environments/{id}/servers", as="config.environments.servers.save")
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function bindServers($id)
+    {
+        $Environment = Server::find($id);
     }
 
 }
