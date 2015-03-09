@@ -1,4 +1,4 @@
-<div class="panel {!! $class !!}">
+<div class="panel {!! $class !!}" id="{!! isset($id) ? $id : '' !!}">
 
     @if (isset($title))
         <div class="panel-heading">{!! $title !!}</div>

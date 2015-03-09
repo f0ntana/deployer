@@ -26,7 +26,7 @@ var paths = {
 };
 
 // CSS
-gulp.task('less', function () {
+gulp.task('css', function () {
     return gulp.src(paths.dev.less + 'app.less')
         .pipe(less())
         .pipe(gulp.dest(paths.production.css))
@@ -66,5 +66,4 @@ gulp.task('watch', function () {
     gulp.watch(paths.dev.img + '/**/*', ['img']);
 });
 
-gulp.task('default', ['less', 'js', 'images', 'watch']);
-
+gulp.task('default', ['css', 'js', 'images', 'watch']);
