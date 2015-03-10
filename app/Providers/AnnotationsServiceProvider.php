@@ -31,7 +31,7 @@ class AnnotationsServiceProvider extends ServiceProvider
      *
      * @var bool
      */
-    protected $scanWhenLocal = false;
+    protected $scanWhenLocal = true;
 
     /**
      * Determines whether or not to automatically scan the controllers

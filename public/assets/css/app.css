@@ -7073,3 +7073,15 @@ body {
 .deployer .form-control {
     border: none;
 }
+
+.list-group {
+    border-right: none;
+    border-left: none;
+    margin: 0;
+}
+
+.list-group li {
+    border-right: none;
+    border-left: none;
+    margin: 0;
+}

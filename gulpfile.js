@@ -19,6 +19,7 @@ var paths = {
         'vendor': './resources/assets/vendor/'
     },
     'production': {
+        'fonts': './public/assets/fonts/',
         'img': './public/assets/img/',
         'css': './public/assets/css/',
         'js': './public/assets/js/'
@@ -48,6 +49,12 @@ gulp.task('js', function () {
         .pipe(gulp.dest(paths.production.js));
 });
 
+// COPY
+gulp.task('copy', function () {
+    gulp.src(paths.dev.vendor + 'bootstrap/dist/fonts/**/*.{ttf,woff,eof,svg}')
+        .pipe(gulp.dest(paths.production.fonts));
+});
+
 gulp.task('images', function () {
     return gulp.src(paths.dev.img + '**/*')
         .pipe(imagemin({
@@ -66,4 +73,4 @@ gulp.task('watch', function () {
     gulp.watch(paths.dev.img + '/**/*', ['img']);
 });
 
-gulp.task('default', ['css', 'js', 'images', 'watch']);
+gulp.task('default', ['css', 'js', 'images', 'copy', 'watch']);

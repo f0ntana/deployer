@@ -5352,7 +5352,6 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover {
 }
 
 .list-group {
-    margin-bottom: 20px;
     padding-left: 0
 }
 
@@ -7282,4 +7281,10 @@ body {
 
 .deployer .form-control {
     border: none
+}
+
+.list-group, .list-group li {
+    border-right: none;
+    border-left: none;
+    margin: 0
 }
