@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Deploy;
 
 use App\Http\Controllers\Controller;
+use App\Models\Environment;
 use App\Models\Project;
 use Session;
 
@@ -42,10 +43,34 @@ class AjaxController extends Controller
      */
     public function environments($project, $branch)
     {
-        $Projects = Project::orderBy('name')->simplePaginate(5);
+        $Environments = Environment::orderBy('name')->simplePaginate(5);
 
         return view('pages.deploy.ajax.environments', [
-            'records' => $Projects,
+            'records' => $Environments,
+            'project' => $project,
+            'branch' => $branch,
+        ]);
+    }
+
+    /**
+     * @Get("deploy/make/{project}/{branch}/{environment}", as="deploy.ajax.make")
+     */
+    public function make($project, $branch, $environment)
+    {
+        return view('pages.deploy.ajax.make', [
+            'environment' => $environment,
+            'project' => $project,
+            'branch' => $branch,
+        ]);
+    }
+
+    /**
+     * @Get("deploy/execute/{project}/{branch}/{environment}", as="deploy.ajax.execute")
+     */
+    public function execute($project, $branch, $environment)
+    {
+        return view('pages.deploy.ajax.make', [
+            'environment' => $environment,
             'project' => $project,
             'branch' => $branch,
         ]);

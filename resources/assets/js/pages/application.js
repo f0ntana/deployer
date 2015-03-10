@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     var loader = '<div class="spinner"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div>';
 
     /**
@@ -19,7 +18,6 @@ $(document).ready(function () {
         $(this).load($(this).data('href'));
     });
 
-
     /**
      * Make checked list-group
      */
@@ -29,4 +27,5 @@ $(document).ready(function () {
 
         e.preventDefault();
     });
+
 });
