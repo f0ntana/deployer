@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-    <div class="panel-heading">Selecione um projeto</div>
+    <div class="panel-heading">Selecione um ambiente</div>
 
     <div class="list-group">
         @if ($records->count())

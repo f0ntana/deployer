@@ -6,13 +6,17 @@ $(document).ready(function () {
         });
     }
 
-    $("body").bind("ajaxComplete", function () {
-        $(".list-group").listgroup()
-    }).bind("ajaxStop", function () {
-        $(".list-group").listgroup()
-    }).bind("ajaxSuccess", function () {
-        $(".list-group").listgroup()
-    }).bind("ajaxError", function () {
-        $(".list-group").listgroup()
+    if ($('[data-target]')) {
+        $(document).on('click', '[data-target]', function (e) {
+            $($(this).data('target')).load($(this).attr('href'));
+            e.preventDefault();
+        });
+    }
+
+    $('document').on('click', '.load-branches', function (e) {
+        e.preventDefault();
+
+        alert('AQUI');
     });
+
 });

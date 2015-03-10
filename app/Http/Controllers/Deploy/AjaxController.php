@@ -14,7 +14,7 @@ class AjaxController extends Controller
      */
     public function projects()
     {
-        $Projects = Project::orderBy('name')->get();
+        $Projects = Project::orderBy('name')->simplePaginate(5);
 
         return view('pages.deploy.ajax.projects', [
             'records' => $Projects
