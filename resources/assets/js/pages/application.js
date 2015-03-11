@@ -4,9 +4,9 @@ $(document).ready(function () {
     /**
      * Load ajax content in target element data-target
      */
-    $(document).on('click', '[data-target]', function (e) {
-        $($(this).data('target')).html(loader);
-        $($(this).data('target')).load($(this).attr('href'));
+    $(document).on('click', '[data-ajax-load]', function (e) {
+        $($(this).data('ajax-load')).html(loader);
+        $($(this).data('ajax-load')).load($(this).attr('href'));
         e.preventDefault();
     });
 

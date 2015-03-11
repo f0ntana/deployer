@@ -6862,7 +6862,6 @@ a.list-group-item-danger.active:focus {
   margin: 0 auto;
   float: none;
 }
-
 .spinner {
     margin: 100px auto;
     width: 50px;
@@ -6870,7 +6869,6 @@ a.list-group-item-danger.active:focus {
     text-align: center;
     font-size: 10px;
 }
-
 .spinner > div {
     background-color: #333;
     height: 100%;
@@ -6880,27 +6878,22 @@ a.list-group-item-danger.active:focus {
     -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
     animation: stretchdelay 1.2s infinite ease-in-out;
 }
-
 .spinner .rect2 {
     -webkit-animation-delay: -1.1s;
     animation-delay: -1.1s;
 }
-
 .spinner .rect3 {
     -webkit-animation-delay: -1s;
     animation-delay: -1s;
 }
-
 .spinner .rect4 {
     -webkit-animation-delay: -0.9s;
     animation-delay: -0.9s;
 }
-
 .spinner .rect5 {
     -webkit-animation-delay: -0.8s;
     animation-delay: -0.8s;
 }
-
 @-webkit-keyframes stretchdelay {
     0%,
     40%,
@@ -6911,7 +6904,6 @@ a.list-group-item-danger.active:focus {
         -webkit-transform: scaleY(1);
     }
 }
-
 @keyframes stretchdelay {
     0%,
     40%,
