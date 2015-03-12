@@ -55,4 +55,14 @@ class HomeController extends Controller
         ]);
     }
 
+    /**
+     * @Get("/deploy/fire/{id}", as="deploy.fire")
+     */
+    public function fire($id)
+    {
+        $this->dispatchFromArray('App\Commands\ExecuteDeploy', [
+            'id' => $id
+        ]);
+    }
+
 }

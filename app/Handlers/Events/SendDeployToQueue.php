@@ -16,7 +16,7 @@ class SendDeployToQueue
     public function handle(DeployWasCreated $event)
     {
         $this->dispatchFromArray('App\Commands\ExecuteDeploy', [
-            'id' => $event->deploy
+            'id' => $event->id
         ]);
     }
 

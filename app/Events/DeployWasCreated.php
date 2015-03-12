@@ -7,11 +7,11 @@ class DeployWasCreated extends Event
 
     use SerializesModels;
 
-    public $deploy;
+    public $id;
 
-    public function __construct($deploy)
+    public function __construct($id)
     {
-        $this->deploy = $deploy;
+        $this->id = $id;
     }
 
 }

@@ -9,4 +9,9 @@ class Project extends Model
 
     protected $fillable = ['slug', 'name', 'repository', 'envoy'];
 
+    public function deploy()
+    {
+        return $this->hasMany('App\Models\Deploy');
+    }
+
 }

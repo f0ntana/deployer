@@ -16,13 +16,23 @@ class Deploy extends Model
         parent::boot();
 
         Deploy::creating(function ($deploy) {
-            Event::fire(new DeployWasCreated($deploy));
+            Event::fire(new DeployWasCreated($deploy->id));
         });
     }
 
     public function user()
     {
         return $this->belongsTo('App\Models\User');
+    }
+
+    public function project()
+    {
+        return $this->belongsTo('App\Models\Project');
+    }
+
+    public function environment()
+    {
+        return $this->belongsTo('App\Models\Environment');
     }
 
 }
