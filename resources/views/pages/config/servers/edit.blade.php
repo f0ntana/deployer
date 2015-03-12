@@ -4,8 +4,8 @@
 {!! Form::text('name', null, ['placeholder' => 'FIRSTCLASS 1']) !!}
 {!! Form::closeGroup() !!}
 
-{!! Form::openGroup('folder', 'Pasta dos Repositórios') !!}
-{!! Form::text('folder', null, ['placeholder' => '/var/www/repositorios']) !!}
+{!! Form::openGroup('ip', 'IP') !!}
+{!! Form::text('ip', null, ['placeholder' => '177.252.183.25']) !!}
 {!! Form::closeGroup() !!}
 
 {!! Form::openFormActions() !!}

@@ -17,7 +17,7 @@ class CreateServersTable extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('slug')->unique();
-            $table->string('folder');
+            $table->string('ip');
             $table->timestamps();
         });
     }

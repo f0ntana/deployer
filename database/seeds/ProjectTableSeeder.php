@@ -14,7 +14,7 @@ class ProjectTableSeeder extends Seeder
             'slug' => 'fc-dev-aws',
             'name' => 'FC-DEV-AWS',
             'repository' => 'git@github.com:LojasKD/FC-DEV-AWS.git',
-            'folder' => 'FC-DEV',
+            'folder' => '/var/www/repositorios{env}/FC-DEV',
             'envoy' => file_get_contents(storage_path('app/envoy.blade.php')),
         ]);
 
@@ -22,7 +22,7 @@ class ProjectTableSeeder extends Seeder
             'slug' => 'fc-frontend-aws',
             'name' => 'FC-FrontEnd-AWS',
             'repository' => 'git@github.com:LojasKD/FC-FrontEnd-AWS.git',
-            'folder' => 'FC-FrontEnd',
+            'folder' => '/var/www/repositorios{env}/FC-FrontEnd',
             'envoy' => file_get_contents(storage_path('app/envoy.blade.php')),
         ]);
     }

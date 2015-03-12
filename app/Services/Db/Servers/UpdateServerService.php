@@ -11,8 +11,8 @@ class UpdateServerService extends ServerService
     {
         $Server = Server::find($id);
         $Server->slug = Str::slug($data['name']);
-        $Server->folder = $data['folder'];
         $Server->name = $data['name'];
+        $Server->ip = $data['ip'];
 
         return $Server->save();
     }

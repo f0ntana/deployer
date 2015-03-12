@@ -13,19 +13,19 @@ class ServerTableSeeder extends Seeder
         Server::create([
             'slug' => 'fc-master',
             'name' => 'FC MASTER',
-            'folder' => '/var/www/repositorios',
+            'ip' => '177.12.163.105',
         ]);
 
         Server::create([
             'slug' => 'fc-slave',
             'name' => 'FC SLAVE',
-            'folder' => '/var/www/repositorios',
+            'ip' => '177.12.163.106',
         ]);
 
         Server::create([
             'slug' => 'fc-homologacao',
             'name' => 'FC HOMOLOGAÇÃO',
-            'folder' => '/var/www/repositorios',
+            'ip' => '177.12.163.105',
         ]);
     }
 

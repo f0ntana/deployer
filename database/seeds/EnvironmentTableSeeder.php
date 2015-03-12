@@ -17,21 +17,9 @@ class EnvironmentTableSeeder extends Seeder
         ]);
 
         Environment::create([
-            'slug' => 'fc-homologacao-1',
-            'name' => 'FC HOMOLOGAÇÃO 1',
-            'folder' => 'hm-1',
-        ]);
-
-        Environment::create([
-            'slug' => 'fc-homologacao-2',
-            'name' => 'FC HOMOLOGAÇÃO 2',
-            'folder' => 'hm-2',
-        ]);
-
-        Environment::create([
-            'slug' => 'fc-homologacao-3',
-            'name' => 'FC HOMOLOGAÇÃO 3',
-            'folder' => 'hm-3',
+            'slug' => 'fc-homologacao',
+            'name' => 'FC HOMOLOGAÇÃO',
+            'folder' => 'hm',
         ]);
     }
 

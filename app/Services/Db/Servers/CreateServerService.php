@@ -11,8 +11,8 @@ class CreateServerService extends ServerService
     {
         return Server::create([
             'slug' => Str::slug($data['name']),
-            'folder' => $data['folder'],
             'name' => $data['name'],
+            'ip' => $data['ip'],
         ]);
     }
 

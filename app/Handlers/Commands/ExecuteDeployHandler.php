@@ -19,20 +19,17 @@ class ExecuteDeployHandler
 
     public function handle(ExecuteDeploy $command)
     {
-        try {
-            $Deploy = $this->deploy->find($command->id);
+        $Deploy = $this->deploy->find($command->id);
 
-            if ($Deploy) {
-                $envoy = $this->envoyService->build($Deploy);
-            } else {
-                $command->delete();
-                return false;
-            }
-
-            return true;
-        } catch (\Exception $e) {
+        if ($Deploy) {
+            $this->envoyService->make($Deploy);
+            $this->envoyService->execute();
+        } else {
+            $command->delete();
             return false;
         }
+
+        return true;
     }
 
 }
