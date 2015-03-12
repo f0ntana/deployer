@@ -23,7 +23,6 @@ class EnvoyService
 
         if ($this->deploy) {
             $content = $this->build();
-            dd($content);
 
             if ($content) {
                 if (!$this->filesystem->isDirectory($this->folder)) {
@@ -35,8 +34,6 @@ class EnvoyService
                 return true;
             }
         }
-
-        return false;
 
         throw new Exception("Object 'Deploy' not found.");
     }
