@@ -1,5 +1,7 @@
 <?php namespace App\Providers;
 
+use App\Events\DeployWasCreated;
+use App\Handlers\Events\SendDeployToQueue;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -15,6 +17,9 @@ class EventServiceProvider extends ServiceProvider
         'event.name' => [
             'EventListener',
         ],
+        DeployWasCreated::class => [
+            SendDeployToQueue::class
+        ]
     ];
 
     /**

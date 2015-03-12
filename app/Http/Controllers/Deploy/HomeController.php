@@ -1,7 +1,9 @@
 <?php namespace App\Http\Controllers\Deploy;
 
 use App\Http\Controllers\Controller;
+use App\Models\Environment;
 use App\Models\Project;
+use App\Services\Db\Deploys\CreateDeployService;
 
 /**
  * @Middleware("auth")
@@ -22,6 +24,33 @@ class HomeController extends Controller
                 view('pages.deploy.index', [
                     'records' => $Projects
                 ])
+            ]
+        ]);
+    }
+
+    /**
+     * @Get("/deploy/execute/{project}/{commit}/{environment}", as="deploy.execute")
+     */
+    public function execute($project, $commit, $environment, CreateDeployService $Service)
+    {
+        $Environment = Environment::whereSlug($environment)->first();
+        $Project = Project::whereSlug($project)->first();
+
+        $Created = $Service->execute([
+            'environment_id' => $Environment->id,
+            'project_id' => $Project->id,
+            'commit' => $commit,
+        ]);
+
+        if ($Created) {
+            $output = view('pages.deploy.success');
+        } else {
+            $output = view('pages.deploy.error');
+        }
+
+        return view('layouts.page', [
+            'contents' => [
+                $output
             ]
         ]);
     }

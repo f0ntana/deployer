@@ -64,16 +64,4 @@ class AjaxController extends Controller
         ]);
     }
 
-    /**
-     * @Get("deploy/execute/{project}/{branch}/{environment}", as="deploy.ajax.execute")
-     */
-    public function execute($project, $branch, $environment)
-    {
-        return view('pages.deploy.ajax.make', [
-            'environment' => $environment,
-            'project' => $project,
-            'branch' => $branch,
-        ]);
-    }
-
 }
