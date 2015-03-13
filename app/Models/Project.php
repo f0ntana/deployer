@@ -14,4 +14,15 @@ class Project extends Model
         return $this->hasMany('App\Models\Deploy');
     }
 
+    public function type()
+    {
+        preg_match("/@([a-z]+)/", $this->repository, $output);
+
+        if (array_key_exists(1, $output)) {
+            return $output[1];
+        }
+
+        return;
+    }
+
 }

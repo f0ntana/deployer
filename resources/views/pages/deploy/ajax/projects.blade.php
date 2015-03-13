@@ -4,7 +4,10 @@
     <div class="list-group checked-list-group">
         @if ($records->count())
             @foreach($records as $record)
-                <a href="/deploy/branches/{{ $record->slug }}" data-ajax-load="#branch-list" class="list-group-item">{{ $record->name }}</a>
+                <a href="/deploy/branches/{{ $record->slug }}" data-ajax-load="#branch-list" class="list-group-item">
+                    <i class="fa fa-{{ $record->type() }}"></i> &nbsp;
+                    {{ $record->name }}
+                </a>
             @endforeach
         @endif
     </div>
