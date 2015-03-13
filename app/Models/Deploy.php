@@ -16,7 +16,7 @@ class Deploy extends Model
         parent::boot();
 
         Deploy::creating(function ($deploy) {
-            Event::fire(new DeployWasCreated($deploy->id));
+            Event::fire(new DeployWasCreated($deploy));
         });
     }
 

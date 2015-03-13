@@ -9,14 +9,10 @@ class SendDeployToQueue
 
     use DispatchesCommands;
 
-    public function __construct()
-    {
-    }
-
     public function handle(DeployWasCreated $event)
     {
         $this->dispatchFromArray('App\Commands\ExecuteDeploy', [
-            'id' => $event->id
+            'deploy' => $event->deploy
         ]);
     }
 
