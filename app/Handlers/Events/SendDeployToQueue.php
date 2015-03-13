@@ -1,5 +1,6 @@
 <?php namespace App\Handlers\Events;
 
+use App\Commands\ExecuteDeploy;
 use App\Events\DeployWasCreated;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Queue;
@@ -11,9 +12,7 @@ class SendDeployToQueue
 
     public function handle(DeployWasCreated $event)
     {
-        $this->dispatchFromArray('App\Commands\ExecuteDeploy', [
-            'deploy' => $event->deploy
-        ]);
+        $this->dispatch(new ExecuteDeploy($event->deploy));
     }
 
 }

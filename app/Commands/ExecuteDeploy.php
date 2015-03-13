@@ -15,18 +15,25 @@ class ExecuteDeploy extends Command implements SelfHandling, ShouldBeQueued
     public function __construct($deploy)
     {
         $this->deploy = $deploy;
+
+        $this->attempts(3);
     }
 
     public function handle(MakeService $makeService)
     {
         if ($this->deploy) {
-            $makeService->fire($this->deploy);
+            $deployed = $makeService->fire($this->deploy);
+
+            if ($deployed) {
+                $this->delete();
+                return true;
+            }
         } else {
             $this->delete();
             return false;
         }
 
-        return true;
+        return false;
     }
 
 }
