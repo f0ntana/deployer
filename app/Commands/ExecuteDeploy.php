@@ -1,7 +1,6 @@
 <?php namespace App\Commands;
 
 use App\Services\Utils\Envoy\MakeService;
-use App\Services\Utils\EnvoyService;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldBeQueued;
 use Illuminate\Queue\InteractsWithQueue;
