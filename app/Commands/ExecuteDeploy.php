@@ -1,10 +1,13 @@
 <?php namespace App\Commands;
 
-// class ExecuteDeploy extends Command implements ShouldBeQueued
-class ExecuteDeploy extends Command
+use Illuminate\Contracts\Queue\ShouldBeQueued;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+
+class ExecuteDeploy extends Command implements ShouldBeQueued
 {
 
-    // use InteractsWithQueue, SerializesModels;
+    use InteractsWithQueue, SerializesModels;
 
     public $id;
 
