@@ -14,6 +14,11 @@ class Project extends Model
         return $this->hasMany('App\Models\Deploy');
     }
 
+    public function environments()
+    {
+        return $this->belongsToMany('App\Models\Environment')->withTimestamps();
+    }
+
     public function type()
     {
         preg_match("/@([a-z]+)/", $this->repository, $output);

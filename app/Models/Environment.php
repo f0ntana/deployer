@@ -14,6 +14,11 @@ class Environment extends Model
         return $this->belongsToMany('App\Models\Server')->withTimestamps();
     }
 
+    public function projects()
+    {
+        return $this->belongsToMany('App\Models\Project')->withTimestamps();
+    }
+
     public function deploy()
     {
         return $this->hasMany('App\Models\Deploy');
