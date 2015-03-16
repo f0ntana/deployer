@@ -23,7 +23,7 @@ return [
     | your application so that it is used when running Artisan tasks.
     |
     */
-    'url' => 'http://deployer.app',
+    'url' => env('APP_URL'),
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
