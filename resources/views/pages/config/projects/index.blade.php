@@ -17,6 +17,10 @@
                     {!! Form::button('editar', ['type' => 'submit', 'class' => 'btn btn-default btn-xs']) !!}
                     {!! Form::close() !!}
 
+                    {!! Form::open(['method' => 'get', 'route' => ['config.projects.environments', $record->id]]) !!}
+                    {!! Form::button('ambientes', ['type' => 'submit', 'class' => 'btn btn-default btn-xs']) !!}
+                    {!! Form::close() !!}
+
                     {!! Form::open(['method' => 'delete', 'class' => 'delete-record', 'route' => ['config.projects.destroy', $record->id]]) !!}
                     {!! Form::button('remover', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs']) !!}
                     {!! Form::close() !!}

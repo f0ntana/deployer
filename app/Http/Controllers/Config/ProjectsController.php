@@ -3,6 +3,7 @@
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Http\Requests\Config\Projects\ProjectRequest;
+use App\Models\Environment;
 use App\Models\Project;
 use App\Services\Db\Projects\AttachPermissionsService;
 use App\Services\Db\Projects\CreateProjectService;
@@ -128,6 +129,32 @@ class ProjectsController extends Controller
         } else {
             return $this->toRoute('config.projects.index', "Não foi possível remover o registro.", 'error');
         }
+    }
+
+    /**
+     * @Get("config/projects/{id}/environments", as="config.projects.environments")
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function environments($id)
+    {
+        $Project = Project::find($id);
+
+        dd($Project->environments);
+
+        return view('layouts.page', [
+            'contents' => [
+                view('bs.panel', [
+                    'title' => "Lista de ambientes do projeto: {$Project->name}",
+                    'class' => 'panel-default',
+                    'nobody' => view('pages.config.projects.environments', [
+                        'environments' => Environment::all(),
+                        'record' => $Project
+                    ]),
+                ])
+            ],
+        ]);
     }
 
 }

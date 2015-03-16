@@ -13,7 +13,7 @@ class CreateProjectsEnvironmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('projects_environment', function (Blueprint $table) {
+        Schema::create('environment_project', function (Blueprint $table) {
             $table->integer('environment_id')->unsigned();
             $table->integer('project_id')->unsigned();
             $table->timestamps();
@@ -30,7 +30,7 @@ class CreateProjectsEnvironmentsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('projects_environment');
+        Schema::drop('environment_project');
     }
 
 }
