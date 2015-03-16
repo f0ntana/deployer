@@ -1,7 +1,6 @@
 <?php namespace App\Http\Controllers\Deploy;
 
 use App\Http\Controllers\Controller;
-use App\Models\Environment;
 use App\Models\Project;
 use App\Repositories\Vcs\BitBucketRepository;
 use App\Repositories\Vcs\GitHubRepository;
@@ -63,10 +62,10 @@ class AjaxController extends Controller
      */
     public function environments($project, $branch)
     {
-        $Environments = Environment::orderBy('name')->simplePaginate(5);
+        $Project = Project::whereSlug($project)->first();
 
         return view('pages.deploy.ajax.environments', [
-            'records' => $Environments,
+            'records' => $Project->environments()->simplePaginate(10),
             'project' => $project,
             'branch' => $branch,
         ]);
