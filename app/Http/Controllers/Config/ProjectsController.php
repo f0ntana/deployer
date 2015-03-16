@@ -5,6 +5,7 @@ use App\Http\Requests;
 use App\Http\Requests\Config\Projects\ProjectRequest;
 use App\Models\Environment;
 use App\Models\Project;
+use App\Services\Db\Projects\AttachEnvironmentService;
 use App\Services\Db\Projects\AttachPermissionsService;
 use App\Services\Db\Projects\CreateProjectService;
 use App\Services\Db\Projects\DeleteProjectService;
@@ -141,8 +142,6 @@ class ProjectsController extends Controller
     {
         $Project = Project::find($id);
 
-        dd($Project->environments);
-
         return view('layouts.page', [
             'contents' => [
                 view('bs.panel', [
@@ -155,6 +154,24 @@ class ProjectsController extends Controller
                 ])
             ],
         ]);
+    }
+
+    /**
+     * @Post("config/projects/{id}/environments", as="config.projects.environments")
+     *
+     * @param $id
+     * @param AttachEnvironmentService $service
+     * @return mixed
+     */
+    public function bindEnvironments($id, AttachEnvironmentService $service)
+    {
+        $Project = Project::find($id);
+
+        if ($service->execute($Project, Request::get('environments'))) {
+            return $this->toRoute('config.projects.index', "Ambientes relacionados com sucesso!", 'success');
+        } else {
+            return $this->toRoute('config.projects.index', "Não foi possível relacionar os ambientes.", 'error');
+        }
     }
 
 }

@@ -7,7 +7,7 @@
                     <div class="permission">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="environment[]" value="{{ $environment->id }}"> {{ $environment->name }}
+                                <input type="checkbox" name="environments[]" {!! $environment->projects->contains($record->id) ? 'checked' : '' !!} value="{{ $environment->id }}"> {{ $environment->name }}
                             </label>
                         </div>
                     </div>
