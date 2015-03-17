@@ -36,4 +36,22 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return $this->belongsTo('App\Models\Role');
     }
+
+    public function profiles()
+    {
+        return $this->hasMany('App\Models\Profile');
+    }
+
+    public function getProfile($vcs)
+    {
+        $output = ['user' => null, 'password' => null];
+        $Profile = $this->profiles->first();
+
+        if ($Profile) {
+            $output['password'] = $Profile->password;
+            $output['user'] = $Profile->user;
+        }
+
+        return $output;
+    }
 }

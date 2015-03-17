@@ -7259,6 +7259,13 @@ section.content {
     padding: 20px
 }
 
+section.content h3.title {
+    border-bottom: 1px dotted #aaa;
+    color: #919191;
+    padding-bottom: 10px;
+    font-size: 22px
+}
+
 .default-list .td-actions form {
     display: inline-block
 }
