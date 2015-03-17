@@ -3,6 +3,7 @@
 use App\Events\DeployWasCreated;
 use Event;
 use Illuminate\Database\Eloquent\Model;
+use URL;
 
 class Deploy extends Model
 {
@@ -35,11 +36,30 @@ class Deploy extends Model
         return $this->belongsTo('App\Models\Environment');
     }
 
+    public function urlExecuteRollback()
+    {
+        $commit = $this->getRollbackHash();
+
+        if ($commit) {
+            return URL::route('deploy.execute', [
+                $this->project->slug,
+                $commit,
+                $this->environment->slug,
+            ]);
+        }
+
+        return null;
+    }
+
     public function getRollbackHash()
     {
         $Rollback = $this->whereEnvironmentId($this->environment_id)->whereProjectId($this->project_id)->skip(1)->orderBy('created_at', 'desc')->first();
 
-        return $Rollback->commit;
+        if ($Rollback) {
+            return $Rollback->commit;
+        }
+
+        return null;
     }
 
 }
