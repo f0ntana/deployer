@@ -19,6 +19,11 @@ class Project extends Model
         return $this->belongsToMany('App\Models\Environment')->withTimestamps();
     }
 
+    public function lastDeploy()
+    {
+        return $this->hasOne('App\Models\Deploy')->latest();
+    }
+
     public function type()
     {
         preg_match("/@([a-z]+)/", $this->repository, $output);
