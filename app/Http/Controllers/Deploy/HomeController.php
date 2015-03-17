@@ -29,14 +29,6 @@ class HomeController extends Controller
     }
 
     /**
-     * @Get("/deploy/rollback/{id}", as="deploy.rollback")
-     */
-    public function rollback($id)
-    {
-        return $id;
-    }
-
-    /**
      * @Get("/deploy/execute/{project}/{commit}/{environment}", as="deploy.execute")
      */
     public function execute($project, $commit, $environment, CreateDeployService $Service)

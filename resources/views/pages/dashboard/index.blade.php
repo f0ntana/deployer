@@ -13,7 +13,11 @@
                                         <td>{{ $project->name }}</td>
                                         <td>{{ $project->lastDeploy->created_at->format('d/m/Y H:i') }}</td>
                                         <td width="1%">
-                                            <a href="{{ URL::route('deploy.rollback', $project->lastDeploy->id) }}" class="btn btn-xs btn-danger">
+                                            <a href="{{ URL::route('deploy.execute', [
+                                                $project->lastDeploy->project->slug,
+                                                $project->lastDeploy->getRollbackHash(),
+                                                $project->lastDeploy->environment->slug
+                                            ]) }}" class="btn btn-xs btn-danger">
                                                 <i class="fa fa-rotate-left"></i>
                                             </a>
                                         </td>

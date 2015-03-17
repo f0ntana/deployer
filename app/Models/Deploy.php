@@ -35,4 +35,11 @@ class Deploy extends Model
         return $this->belongsTo('App\Models\Environment');
     }
 
+    public function getRollbackHash()
+    {
+        $Rollback = $this->whereEnvironmentId($this->environment_id)->whereProjectId($this->project_id)->skip(1)->orderBy('created_at', 'desc')->first();
+
+        return $Rollback->commit;
+    }
+
 }
