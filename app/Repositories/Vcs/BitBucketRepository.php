@@ -2,7 +2,8 @@
 
 use App\Contracts\Vcs\VersionControlContract;
 use App\Services\Utils\GetRepoAndProjectService;
-use Bitbucket\API\Authentication\Basic as Auth;
+use Auth;
+use Bitbucket\API\Authentication\Basic;
 use Bitbucket\API\Repositories\Repository;
 
 class BitBucketRepository implements VersionControlContract
@@ -13,7 +14,8 @@ class BitBucketRepository implements VersionControlContract
 
     public function __construct(Repository $repository, GetRepoAndProjectService $service)
     {
-        $repository->setCredentials(new Auth('rdehnhardt', '92774748Re'));
+        $auth = Auth::user()->getProfile('bitbucket');
+        $repository->setCredentials(new Basic($auth['user'], $auth['password']));
 
         $this->repository = $repository;
         $this->service = $service;

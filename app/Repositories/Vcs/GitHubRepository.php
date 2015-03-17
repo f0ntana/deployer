@@ -2,6 +2,7 @@
 
 use App\Contracts\Vcs\VersionControlContract;
 use App\Services\Utils\GetRepoAndProjectService;
+use Auth;
 use Github\Client;
 
 class GitHubRepository implements VersionControlContract
@@ -12,8 +13,10 @@ class GitHubRepository implements VersionControlContract
 
     public function __construct(GetRepoAndProjectService $service)
     {
+        $auth = Auth::user()->getProfile('github');
+
         $Client = new Client();
-        $Client->authenticate('renatokd', '92774748Re', Client::AUTH_HTTP_PASSWORD);
+        $Client->authenticate($auth['user'], $auth['password'], Client::AUTH_HTTP_PASSWORD);
 
         $this->service = $service;
         $this->client = $Client;
