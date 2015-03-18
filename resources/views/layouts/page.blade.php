@@ -4,8 +4,8 @@
     <header>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                    <a href="" class="btn btn-default btn-block"><i class="fa fa-comments"></i></a>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h1 class="title pull-right"><i class="fa fa-skyatlas"></i>Deployer</h1>
                 </div>
             </div>
         </div>
