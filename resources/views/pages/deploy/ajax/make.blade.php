@@ -1,1 +1,1 @@
-<a href="/deploy/execute/{{ $project }}/{{ $branch }}/{{ $commit }}/{{ $environment }}" class="btn btn-primary btn-lg btn-block">deploy</a>
+<a href="/deploy/{{ isset($environment->password) ? 'password' : 'execute' }}/{{ $project }}/{{ $branch }}/{{ $commit }}/{{ $environment->slug }}" class="btn btn-primary btn-lg btn-block">deploy</a>

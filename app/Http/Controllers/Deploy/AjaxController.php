@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Deploy;
 
 use App\Http\Controllers\Controller;
+use App\Models\Environment;
 use App\Models\Project;
 use App\Repositories\Vcs\BitBucketRepository;
 use App\Repositories\Vcs\GitHubRepository;
@@ -77,8 +78,10 @@ class AjaxController extends Controller
      */
     public function make($project, $branch, $commit, $environment)
     {
+        $Environment = Environment::whereSlug($environment)->first();
+
         return view('pages.deploy.ajax.make', [
-            'environment' => $environment,
+            'environment' => $Environment,
             'project' => $project,
             'commit' => $commit,
             'branch' => $branch,

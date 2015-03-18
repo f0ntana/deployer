@@ -1,18 +1,21 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-center">
-        <form method="get">
-            <div class="form-group">
-                <label for="password">Senha</label>
-                <input placeholder="Informe a senha para deploy" class="form-control" name="password" type="password" id="password"/>
-            </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Autorização necessária</div>
 
-            <div class="form-actions">
-                <input class="btn btn-primary form-action" type="submit" value="Continuar">
+            <div class="panel-body">
+                {!! Form::open(['method' => 'post', 'route' => ['deploy.password.post', $project, $branch, $commit, $environment]]) !!}
+
+                {!! Form::openGroup('password', 'Senha') !!}
+                {!! Form::password('password', ['placeholder' => 'Informe a senha']) !!}
+                {!! Form::closeGroup() !!}
+
+                {!! Form::openFormActions() !!}
+                {!! Form::submit('Continuar', ['class' => 'btn btn-primary pull-right form-action']) !!}
+                {!! Form::closeFormActions() !!}
+
+                {!! Form::close() !!}
             </div>
-        </form>
+        </div>
     </div>
-</div>
-
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="make-deploy"></div>
 </div>
