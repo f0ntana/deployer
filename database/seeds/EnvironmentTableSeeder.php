@@ -14,6 +14,7 @@ class EnvironmentTableSeeder extends Seeder
             'slug' => 'fc-producao',
             'name' => 'FC PRODUÇÃO',
             'folder' => 'prod',
+            'password' => 'pwd',
         ]);
 
         Environment::create([

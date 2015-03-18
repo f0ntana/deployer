@@ -36,19 +36,24 @@ class Deploy extends Model
         return $this->belongsTo('App\Models\Environment');
     }
 
-    public function urlExecuteRollback()
+    public function getExecuteUrl()
     {
-        $commit = $this->getRollbackHash();
-
-        if ($commit) {
+        if ($this->environment->password) {
+            return URL::route('deploy.password', [
+                $this->project->slug,
+                $this->branch,
+                $this->commit,
+                $this->environment->slug,
+            ]);
+        } else {
             return URL::route('deploy.execute', [
                 $this->project->slug,
-                $commit,
+                $this->branch,
+                $this->commit,
                 $this->environment->slug,
             ]);
         }
 
-        return null;
     }
 
     public function getRollbackHash()

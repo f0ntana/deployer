@@ -30,6 +30,14 @@ class HomeController extends Controller
 
     /**
      * @Get("/deploy/execute/{project}/{branch}/{commit}/{environment}", as="deploy.execute")
+     *
+     * @param $project
+     * @param $branch
+     * @param $commit
+     * @param $environment
+     * @param CreateDeployService $Service
+     *
+     * @return \Illuminate\View\View
      */
     public function execute($project, $branch, $commit, $environment, CreateDeployService $Service)
     {
@@ -52,6 +60,31 @@ class HomeController extends Controller
         return view('layouts.page', [
             'contents' => [
                 $output
+            ]
+        ]);
+    }
+
+    /**
+     * @Get("/deploy/password/{project}/{branch}/{commit}/{environment}", as="deploy.password")
+     *
+     * @param $project
+     * @param $branch
+     * @param $commit
+     * @param $environment
+     * @param CreateDeployService $Service
+     *
+     * @return \Illuminate\View\View
+     */
+    public function password($project, $branch, $commit, $environment, CreateDeployService $Service)
+    {
+        return view('layouts.page', [
+            'contents' => [
+                view('pages.deploy.password', [
+                    'environment' => $environment,
+                    'project' => $project,
+                    'branch' => $branch,
+                    'commit' => $commit,
+                ])
             ]
         ]);
     }
