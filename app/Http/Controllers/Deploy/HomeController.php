@@ -29,9 +29,9 @@ class HomeController extends Controller
     }
 
     /**
-     * @Get("/deploy/execute/{project}/{commit}/{environment}", as="deploy.execute")
+     * @Get("/deploy/execute/{project}/{branch}/{environment}", as="deploy.execute")
      */
-    public function execute($project, $commit, $environment, CreateDeployService $Service)
+    public function execute($project, $branch, $environment, CreateDeployService $Service)
     {
         $Environment = Environment::whereSlug($environment)->first();
         $Project = Project::whereSlug($project)->first();
@@ -39,7 +39,7 @@ class HomeController extends Controller
         $Created = $Service->execute([
             'environment_id' => $Environment->id,
             'project_id' => $Project->id,
-            'commit' => $commit,
+            'branch' => $branch,
         ]);
 
         if ($Created) {

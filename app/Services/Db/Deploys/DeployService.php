@@ -14,7 +14,7 @@ class DeployService
     public function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'branch' => 'required|max:255',
         ]);
     }
 

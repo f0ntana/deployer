@@ -18,7 +18,7 @@ class CreateDeploysTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('project_id')->unsigned();
             $table->integer('environment_id')->unsigned();
-            $table->string('commit');
+            $table->string('branch');
             $table->dateTime('executed_at')->nullable();
             $table->timestamps();
 

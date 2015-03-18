@@ -13,7 +13,7 @@ class CreateDeployService extends DeployService
             'user_id' => Auth::user()->id,
             'environment_id' => $data['environment_id'],
             'project_id' => $data['project_id'],
-            'commit' => $data['commit'],
+            'branch' => $data['branch'],
         ]);
     }
 
