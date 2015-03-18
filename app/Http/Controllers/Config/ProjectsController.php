@@ -90,14 +90,41 @@ class ProjectsController extends Controller
 
     public function show($id)
     {
-        //
+        $Project = Project::find($id);
+
+        return view('layouts.page', [
+            'contents' => [
+                view('bs.row', [
+                    'cols' => [
+                        view('bs.col', [
+                            'col' => 5,
+                            'body' => view('bs.panel', [
+                                'title' => "Dados do Projeto: {$Project->name}",
+                                'class' => 'panel-default',
+                                'body' => view('pages.config.projects.show', [
+                                    'project' => $Project
+                                ]),
+                            ])
+                        ]),
+                        view('bs.col', [
+                            'col' => 7,
+                            'body' => view('bs.panel', [
+                                'title' => "Deploys do Projeto: {$Project->name}",
+                                'class' => 'panel-default',
+                                'nobody' => view('pages.config.projects.deploys', [
+                                    'deploys' => $Project->deploy
+                                ]),
+                            ])
+                        ]),
+                    ]
+                ])
+            ]
+        ]);
     }
 
     public function edit($id)
     {
         $Project = Project::find($id);
-        $Deploy = $Project->lastDeploy()->whereEnvironmentId();
-        dd($Deploy);
 
         return view('layouts.page', [
             'contents' => [

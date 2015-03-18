@@ -11,7 +11,7 @@ class Project extends Model
 
     public function deploy()
     {
-        return $this->hasMany('App\Models\Deploy');
+        return $this->hasMany('App\Models\Deploy')->orderBy('created_at', 'desc');
     }
 
     public function environments()

@@ -17,6 +17,10 @@
                     {!! Form::button('editar', ['type' => 'submit', 'class' => 'btn btn-default btn-xs']) !!}
                     {!! Form::close() !!}
 
+                    {!! Form::open(['method' => 'get', 'route' => ['config.projects.show', $record->id]]) !!}
+                    {!! Form::button('visualizar', ['type' => 'submit', 'class' => 'btn btn-default btn-xs']) !!}
+                    {!! Form::close() !!}
+
                     {!! Form::open(['method' => 'get', 'route' => ['config.projects.environments', $record->id]]) !!}
                     {!! Form::button('ambientes', ['type' => 'submit', 'class' => 'btn btn-default btn-xs']) !!}
                     {!! Form::close() !!}

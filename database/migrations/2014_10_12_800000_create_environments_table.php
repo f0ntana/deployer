@@ -18,6 +18,7 @@ class CreateEnvironmentsTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('folder');
+            $table->string('password')->nullable();
             $table->timestamps();
         });
     }

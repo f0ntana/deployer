@@ -4,7 +4,7 @@
     <div class="list-group checked-list-group">
         @if (count($records))
             @foreach($records['branches'] as $record)
-                <a href="/deploy/environments/{{ $project }}/{{ $record['branch'] }}" data-ajax-load="#environment-list" class="list-group-item load-environments">{{ $record['branch'] }}</a>
+                <a href="/deploy/environments/{{ $project }}/{{ $record['branch'] }}/{{ $record['hash'] }}" data-ajax-load="#environment-list" class="list-group-item load-environments">{{ $record['branch'] }}</a>
             @endforeach
         @endif
     </div>

@@ -58,27 +58,29 @@ class AjaxController extends Controller
     }
 
     /**
-     * @Get("deploy/environments/{project}/{branch}", as="deploy.ajax.environments")
+     * @Get("deploy/environments/{project}/{branch}/{commit}", as="deploy.ajax.environments")
      */
-    public function environments($project, $branch)
+    public function environments($project, $branch, $commit)
     {
         $Project = Project::whereSlug($project)->first();
 
         return view('pages.deploy.ajax.environments', [
             'records' => $Project->environments()->simplePaginate(10),
             'project' => $project,
+            'commit' => $commit,
             'branch' => $branch,
         ]);
     }
 
     /**
-     * @Get("deploy/make/{project}/{branch}/{environment}", as="deploy.ajax.make")
+     * @Get("deploy/make/{project}/{branch}/{commit}/{environment}", as="deploy.ajax.make")
      */
-    public function make($project, $branch, $environment)
+    public function make($project, $branch, $commit, $environment)
     {
         return view('pages.deploy.ajax.make', [
             'environment' => $environment,
             'project' => $project,
+            'commit' => $commit,
             'branch' => $branch,
         ]);
     }

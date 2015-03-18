@@ -4,7 +4,7 @@
     <div class="list-group checked-list-group">
         @if ($records->count())
             @foreach($records as $record)
-                <a href="/deploy/make/{{ $project }}/{{ $branch }}/{{ $record->slug }}" data-ajax-load="#make-deploy" class="list-group-item">{{ $record->name }}</a>
+                <a href="/deploy/make/{{ $project }}/{{ $branch }}/{{ $commit }}/{{ $record->slug }}" data-ajax-load="#make-deploy" class="list-group-item">{{ $record->name }}</a>
             @endforeach
         @endif
     </div>

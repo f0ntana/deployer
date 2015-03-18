@@ -1,1 +1,1 @@
-<a href="/deploy/execute/{{ $project }}/{{ $branch }}/{{ $environment }}" class="btn btn-primary btn-lg btn-block">deploy</a>
+<a href="/deploy/execute/{{ $project }}/{{ $branch }}/{{ $commit }}/{{ $environment }}" class="btn btn-primary btn-lg btn-block">deploy</a>
