@@ -10,7 +10,7 @@ class Deploy extends Model
 
     protected $table = 'deploys';
 
-    protected $fillable = ['user_id', 'project_id', 'environment_id', 'commit'];
+    protected $fillable = ['user_id', 'project_id', 'environment_id', 'branch', 'commit'];
 
     protected static function boot()
     {

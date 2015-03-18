@@ -19,9 +19,9 @@ class Project extends Model
         return $this->belongsToMany('App\Models\Environment')->withTimestamps();
     }
 
-    public function lastDeploy()
+    public function lastDeploy($id)
     {
-        return $this->hasOne('App\Models\Deploy')->latest();
+        return $this->hasOne('App\Models\Deploy')->whereEnvironmentId($id)->latest()->first();
     }
 
     public function type()

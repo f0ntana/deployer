@@ -96,6 +96,8 @@ class ProjectsController extends Controller
     public function edit($id)
     {
         $Project = Project::find($id);
+        $Deploy = $Project->lastDeploy()->whereEnvironmentId();
+        dd($Deploy);
 
         return view('layouts.page', [
             'contents' => [

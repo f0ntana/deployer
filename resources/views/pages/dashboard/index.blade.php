@@ -6,12 +6,13 @@
                     <div class="panel-heading">{{ $environment->name }}</div>
 
                     @if ($environment->projects)
-                        <table class="table">
+                        <table class="table table-bordered">
                             @foreach($environment->projects as $project)
-                                @if ($project->lastDeploy)
+                                @if ($project->lastDeploy($environment->id))
                                     <tr>
                                         <td>{{ $project->name }}</td>
-                                        <td>{{ $project->lastDeploy->created_at->format('d/m/Y H:i') }}</td>
+                                        <td>{{ $project->lastDeploy($environment->id)->branch }}</td>
+                                        <td>{{ $project->lastDeploy($environment->id)->created_at->format('d/m/Y H:i') }}</td>
                                     </tr>
                                 @endif
                             @endforeach

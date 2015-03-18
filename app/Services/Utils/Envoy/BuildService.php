@@ -16,6 +16,7 @@ class BuildService
                 'servers-names' => $this->getServerList(true),
                 'folder' => $this->getDeployFolder(),
                 'revision' => $this->deploy->commit,
+                'branch' => $this->deploy->branch,
             ]);
         }
 
@@ -65,11 +66,10 @@ class BuildService
         $Project = $this->deploy->project;
 
         if ($Environment && $Project) {
-
             return str_replace("{env}", "/{$Environment->folder}", $Project->folder);
         }
 
-        throw new Exception("Object 'Environment' or 'Project'  not found.");
+        throw new Exception("Object 'Environment' or 'Project' not found.");
     }
 
 }
