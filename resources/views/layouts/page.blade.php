@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <h1 class="title pull-right"><i class="fa fa-skyatlas"></i>Deployer</h1>
+                    <h1 class="title pull-right" style="font-family: 'Titillium Web',sans-serif; margin: 0; padding: 0;"><i class="fa fa-skyatlas"></i> Deployer</h1>
                 </div>
             </div>
         </div>
