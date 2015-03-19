@@ -19,31 +19,23 @@ class MakeService
 
     public function fire(Deploy $Deploy)
     {
-        try {
-            $folder = storage_path("envoy/" . md5($Deploy->id));
+        $folder = storage_path("envoy/" . md5($Deploy->id));
 
-            if ($Deploy) {
-                $content = $this->build->fire($Deploy);
+        if ($Deploy) {
+            $content = $this->build->fire($Deploy);
 
-                if ($content) {
-                    if (!$this->filesystem->isDirectory($folder)) {
-                        $this->filesystem->makeDirectory($folder, 777, true);
-                    }
-
-                    $this->filesystem->put("{$folder}/Envoy.blade.php", $content);
+            if ($content) {
+                if (!$this->filesystem->isDirectory($folder)) {
+                    $this->filesystem->makeDirectory($folder, 777, true);
                 }
 
-                $this->execute->fire($folder);
-
-                return true;
+                $this->filesystem->put("{$folder}/Envoy.blade.php", $content);
             }
 
-            throw new Exception("Object 'Deploy' not found.");
-        } catch (\Exception $e) {
-            return false;
+            $this->execute->fire($folder);
+
+            return true;
         }
-
-
     }
 
 }

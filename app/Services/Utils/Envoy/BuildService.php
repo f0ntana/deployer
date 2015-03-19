@@ -12,15 +12,13 @@ class BuildService
 
         if ($this->deploy) {
             return $this->getContent([
-                'servers-list' => $this->getServerList(),
-                'servers-names' => $this->getServerList(true),
+                'server_list' => $this->getServerList(),
+                'server_names' => $this->getServerList(true),
                 'folder' => $this->getDeployFolder(),
                 'revision' => $this->deploy->commit,
                 'branch' => $this->deploy->branch,
             ]);
         }
-
-        throw new Exception("Object 'Deploy' not found.");
     }
 
     private function getContent(array $data)
@@ -28,7 +26,7 @@ class BuildService
         $output = $this->deploy->project->envoy;
 
         foreach ($data as $key => $value) {
-            $output = str_replace("{{$key}}", $value, $output);
+            $output = str_replace('{' . $key . '}', $value, $output);
         }
 
         return $output;
@@ -62,14 +60,7 @@ class BuildService
 
     private function getDeployFolder()
     {
-        $Environment = $this->deploy->environment;
-        $Project = $this->deploy->project;
-
-        if ($Environment && $Project) {
-            return str_replace("{env}", "/{$Environment->folder}", $Project->folder);
-        }
-
-        throw new Exception("Object 'Environment' or 'Project' not found.");
+        return str_replace("{env}", "/{$this->deploy->environment->folder}", $this->deploy->project->folder);
     }
 
 }

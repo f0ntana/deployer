@@ -7,7 +7,7 @@ class Project extends Model
 
     protected $table = 'projects';
 
-    protected $fillable = ['slug', 'name', 'repository', 'envoy'];
+    protected $fillable = ['slug', 'name', 'repository', 'envoy', 'folder'];
 
     public function deploy()
     {
