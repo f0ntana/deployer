@@ -32,9 +32,14 @@ class MakeService
                 $this->filesystem->put("{$folder}/Envoy.blade.php", $content);
             }
 
-            $this->execute->fire($folder);
+            if ($this->execute->fire($folder)) {
+                $Deploy->executed_at = date('Y-m-d H:i:s');
+                $Deploy->save();
 
-            return true;
+                return true;
+            }
+
+            return false;
         }
     }
 

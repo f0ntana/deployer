@@ -17,11 +17,15 @@ class ExecuteService
 
     public function fire($folder)
     {
-        $command = "cd {$folder} && envoy run deploy";
+        exec("cd {$folder} && envoy run deploy", $outputs, $ret);
 
-        Log::info($command);
+        if ($ret == 0) {
+            $this->delete->fire($folder);
 
-        $this->delete->fire($folder);
+            return true;
+        }
+
+        return false;
     }
 
 }
