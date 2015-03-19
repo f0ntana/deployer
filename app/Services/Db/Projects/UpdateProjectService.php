@@ -14,6 +14,7 @@ class UpdateProjectService extends ProjectService
         $Project->name = $data['name'];
         $Project->repository = $data['repository'];
         $Project->envoy = $data['envoy'];
+        $Project->folder = $data['folder'];
 
         return $Project->save();
     }

@@ -14,6 +14,7 @@ class CreateProjectService extends ProjectService
             'name' => $data['name'],
             'repository' => $data['repository'],
             'envoy' => $data['envoy'],
+            'folder' => $data['folder'],
         ]);
     }
 
