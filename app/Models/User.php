@@ -37,15 +37,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->belongsTo('App\Models\Role');
     }
 
-    public function profiles()
-    {
-        return $this->hasMany('App\Models\Profile');
-    }
-
     public function getProfile($vcs)
     {
         $output = ['user' => null, 'password' => null];
-        $Profile = $this->profiles->first();
+        $Profile = $this->profiles()->whereVcs($vcs)->first();
 
         if ($Profile) {
             $output['password'] = $Profile->password;
@@ -53,5 +48,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         }
 
         return $output;
+    }
+
+    public function profiles()
+    {
+        return $this->hasMany('App\Models\Profile');
     }
 }

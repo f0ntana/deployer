@@ -2,7 +2,7 @@
     <div class="panel-heading">Selecione uma branch</div>
 
     <div class="list-group checked-list-group">
-        @if (count($records))
+        @if (count($records) && array_key_exists('branches', $records))
             @foreach($records['branches'] as $record)
                 <a href="/deploy/environments/{{ $project }}/{{ $record['branch'] }}/{{ $record['hash'] }}" data-ajax-load="#environment-list" class="list-group-item load-environments">{{ $record['branch'] }}</a>
             @endforeach
