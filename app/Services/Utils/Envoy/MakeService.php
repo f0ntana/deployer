@@ -38,9 +38,9 @@ class MakeService
 
                 return true;
             }
-
-            return false;
         }
+
+        return false;
     }
 
 }

@@ -29,7 +29,6 @@ class ExecuteDeploy extends Command implements SelfHandling, ShouldBeQueued
                 return true;
             }
         } else {
-            $this->delete();
             return false;
         }
 
