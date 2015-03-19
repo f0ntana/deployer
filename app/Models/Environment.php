@@ -7,7 +7,7 @@ class Environment extends Model
 
     protected $table = 'environments';
 
-    protected $fillable = ['slug', 'name', 'repository', 'envoy'];
+    protected $fillable = ['slug', 'name', 'repository', 'envoy', 'folder'];
 
     public function servers()
     {

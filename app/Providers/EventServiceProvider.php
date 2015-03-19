@@ -17,8 +17,9 @@ class EventServiceProvider extends ServiceProvider
         'event.name' => [
             'EventListener',
         ],
+
         DeployWasCreated::class => [
-            SendDeployToQueue::class
+            SendDeployToQueue::class,
         ]
     ];
 

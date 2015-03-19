@@ -15,7 +15,6 @@ class ExecuteDeploy extends Command implements SelfHandling, ShouldBeQueued
     public function __construct($deploy)
     {
         $this->deploy = $deploy;
-
         $this->attempts(3);
     }
 

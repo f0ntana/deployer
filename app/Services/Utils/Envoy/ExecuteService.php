@@ -18,14 +18,9 @@ class ExecuteService
     public function fire($folder)
     {
         exec("cd {$folder} && envoy run deploy", $outputs, $ret);
+        $this->delete->fire($folder);
 
-        if ($ret == 0) {
-            $this->delete->fire($folder);
-
-            return true;
-        }
-
-        return false;
+        return true;
     }
 
 }

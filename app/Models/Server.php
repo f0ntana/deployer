@@ -7,7 +7,7 @@ class Server extends Model
 
     protected $table = 'servers';
 
-    protected $fillable = ['slug', 'name', 'folder'];
+    protected $fillable = ['slug', 'name', 'folder', 'ip'];
 
     public function environments()
     {
