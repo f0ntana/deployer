@@ -14,18 +14,21 @@ class ServerTableSeeder extends Seeder
             'slug' => 'fc-master',
             'name' => 'FC MASTER',
             'ip' => '177.12.163.105',
+            'login' => 'ec2-user',
         ]);
 
         Server::create([
             'slug' => 'fc-slave',
             'name' => 'FC SLAVE',
             'ip' => '177.12.163.106',
+            'login' => 'ec2-user',
         ]);
 
         Server::create([
             'slug' => 'fc-homologacao',
             'name' => 'FC HOMOLOGAÇÃO',
             'ip' => '177.12.163.105',
+            'login' => 'ec2-user',
         ]);
     }
 

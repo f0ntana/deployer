@@ -18,6 +18,8 @@ class CreateServersTable extends Migration
             $table->string('name')->unique();
             $table->string('slug')->unique();
             $table->string('ip');
+            $table->string('login');
+            $table->text('key')->nullable();
             $table->timestamps();
         });
     }

@@ -11,6 +11,7 @@ class CreateServerService extends ServerService
     {
         return Server::create([
             'slug' => Str::slug($data['name']),
+            'login' => $data['login'],
             'name' => $data['name'],
             'ip' => $data['ip'],
         ]);
