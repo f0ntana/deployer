@@ -42,7 +42,7 @@ class BuildService
                 if ($names) {
                     $output[] = $Server->slug;
                 } else {
-                    $output[$Server->slug] = $Server->ip;
+                    $output[$Server->slug] = "{$Server->login}@{$Server->ip}";
                 }
             }
         }

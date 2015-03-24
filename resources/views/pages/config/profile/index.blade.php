@@ -3,6 +3,7 @@
         <ul class="nav nav-tabs">
             <li class="active"><a href="#tab1default" data-toggle="tab">Meus Dados</a></li>
             <li><a href="#tab2default" data-toggle="tab">VCS</a></li>
+            <li><a href="#tab3default" data-toggle="tab">SSH</a></li>
         </ul>
     </div>
     <div class="panel-body">
@@ -12,6 +13,9 @@
             </div>
             <div class="tab-pane fade" id="tab2default">
                 @include('pages.config.profile.tabs.vcs')
+            </div>
+            <div class="tab-pane fade" id="tab3default">
+                @include('pages.config.profile.tabs.ssh')
             </div>
         </div>
     </div>

@@ -30,6 +30,9 @@ class ProfileController extends Controller
                     'vcs' => [
                         'bitbucket' => Auth::user()->getProfile('bitbucket'),
                         'github' => Auth::user()->getProfile('github'),
+                    ],
+                    'ssh' => [
+                        'rsa' => file_get_contents("/home/vagrant/.ssh/id_rsa.pub")
                     ]
                 ])
             ],
