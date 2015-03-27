@@ -14,7 +14,7 @@ class DeleteService
 
     public function fire($folder)
     {
-        $this->filesystem->delete($folder);
+        $this->filesystem->deleteDirectory($folder);
     }
 
 }
