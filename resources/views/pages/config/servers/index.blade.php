@@ -11,7 +11,7 @@
         @foreach($records as $record)
             <tr>
                 <td>{{ $record->name }}</td>
-                <td>{{ $record->created_at->format('d/m/Y H:i') }}</td>
+                <td>{{ $record->created_at }}</td>
                 <td class="td-actions" nowrap>
                     {!! Form::open(['method' => 'get', 'route' => ['config.servers.edit', $record->id]]) !!}
                     {!! Form::button('editar', ['type' => 'submit', 'class' => 'btn btn-default btn-xs']) !!}
