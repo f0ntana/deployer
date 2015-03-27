@@ -26,7 +26,7 @@ class MakeService
 
             if ($content) {
                 if (!$this->filesystem->isDirectory($folder)) {
-                    $this->filesystem->makeDirectory($folder, 777, true);
+                    $this->filesystem->makeDirectory($folder);
                 }
 
                 $this->filesystem->put("{$folder}/Envoy.blade.php", $content);
