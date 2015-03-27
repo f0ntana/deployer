@@ -32,7 +32,7 @@ class ProfileController extends Controller
                         'github' => Auth::user()->getProfile('github'),
                     ],
                     'ssh' => [
-                        'rsa' => file_get_contents("/home/vagrant/.ssh/id_rsa.pub")
+                        'rsa' => file_get_contents("~/.ssh/id_rsa.pub")
                     ]
                 ])
             ],
