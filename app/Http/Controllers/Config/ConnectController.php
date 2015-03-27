@@ -37,6 +37,8 @@ class ConnectController extends Controller
     public function store($id)
     {
         $Server = Server::find($id);
+        $outputs = null;
+        $ret = null;
 
         $command = sprintf('ssh-copy-id "%s@%s -p %s"', $Server->login, $Server->ip, Request::get('password'));
         exec($command, $outputs, $ret);
