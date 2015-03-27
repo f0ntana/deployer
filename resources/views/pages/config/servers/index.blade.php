@@ -34,9 +34,3 @@
     @endif
     </tbody>
 </table>
-
-@if ($records->count())
-    <div class="text-right">
-        {{ $records->render() }}
-    </div>
-@endif
