@@ -11,9 +11,17 @@
         @foreach($records as $record)
             <tr>
                 <td>{{ $record->name }}</td>
-                <td>{{ $record->created_at }}</td>
+                <td>{{ $record->created_at->format('d/m/Y') }}</td>
                 <td class="td-actions" nowrap>
+                    {!! Form::open(['method' => 'get', 'route' => ['config.servers.edit', $record->id]]) !!}
+                    {!! Form::button('editar', ['type' => 'submit', 'class' => 'btn btn-default btn-xs']) !!}
+                    {!! Form::close() !!}
 
+
+
+                    {!! Form::open(['method' => 'delete', 'class' => 'delete-record', 'route' => ['config.servers.destroy', $record->id]]) !!}
+                    {!! Form::button('remover', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs']) !!}
+                    {!! Form::close() !!}
                 </td>
             </tr>
         @endforeach
@@ -24,3 +32,9 @@
     @endif
     </tbody>
 </table>
+
+@if ($records->count())
+    <div class="text-right">
+        {{ $records->render() }}
+    </div>
+@endif
