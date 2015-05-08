@@ -26,6 +26,7 @@
     {!! Form::close() !!}
 
     <div class="login-actions">
-        <a href="/password/email" class="btn btn-sm btn-block btn-default"><i class="fa fa-refresh"></i> Esqueçi minha senha</a>
+        <a href="/password/email" class="btn btn-sm btn-block btn-default"><i class="fa fa-refresh"></i> Esqueci minha senha</a>
+        <a href="/auth/register" class="btn btn-sm btn-block btn-default"><i class="fa fa-user"></i> Não tenho usuário</a>
     </div>
 @endsection
