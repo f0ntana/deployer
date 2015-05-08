@@ -1,5 +1,6 @@
 <?php namespace App\Services;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 use Validator;
@@ -30,6 +31,7 @@ class Registrar implements RegistrarContract {
 	public function create(array $data)
 	{
 		return User::create([
+            'role_id' => Role::whereSlug('administrador')->first()->id,
 			'name' => $data['name'],
 			'email' => $data['email'],
 			'password' => bcrypt($data['password']),
