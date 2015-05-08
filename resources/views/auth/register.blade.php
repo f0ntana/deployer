@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 
 @section('content')
-    <h3 class="text-center">Bem-vindo! Faça seu login abaixo</h3>
+    <h3 class="text-center">Informe seus dados</h3>
 
     {!! Form::open() !!}
     {!! Form::openGroup('name', 'Nome') !!}
